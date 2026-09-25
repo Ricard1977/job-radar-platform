@@ -16,4 +16,6 @@ jobs:
           python-version: "3.12"
 
       - name: Test registry repeatability
+        env:
+          PYTHONPATH: ${{ github.workspace }}
         run: python tests/probe_job_registry.py
