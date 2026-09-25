@@ -1,19 +1,16 @@
-"""Source-independent registry for known job IDs and human/AI workflow state."""
+"""Source-independent storage for opportunities, external IDs and extractor runs."""
 
 import json
 from datetime import datetime, timezone
 from pathlib import Path
 
 DEFAULT_PATH = Path("data/job_registry.json")
-VALID_STATUSES = {
-    "NEW",
-    "DISCARDED_AI",
-    "DISCARDED_USER",
-    "SELECTED",
-    "APPLIED",
-    "IN_PROCESS",
-    "CLOSED",
-}
+VALID_JOB_STATUSES = {"NEW", "DISCARDED_AI", "DISCARDED_USER", "SELECTED", "APPLIED", "IN_PROCESS", "CLOSED"}
+VALID_RUN_STATUSES = {"RUNNING", "SUCCESS", "ERROR"}
+
+
+def utcnow() -> str:
+    return datetime.now(timezone.utc).isoformat()
 
 
 class JobRegistry:
@@ -23,9 +20,16 @@ class JobRegistry:
 
     def _load(self) -> dict:
         if not self.path.exists():
-            return {"schema_version": 1, "jobs": {}}
+            return self._empty()
         with self.path.open("r", encoding="utf-8") as handle:
-            return json.load(handle)
+            data = json.load(handle)
+        if data.get("schema_version") != 2:
+            raise ValueError("Unsupported registry schema; expected version 2")
+        return data
+
+    @staticmethod
+    def _empty() -> dict:
+        return {"schema_version": 2, "next_internal_job_number": 1, "jobs": {}, "job_sources": {}, "runs": {}}
 
     def save(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
@@ -33,50 +37,111 @@ class JobRegistry:
             json.dump(self.data, handle, ensure_ascii=False, indent=2, sort_keys=True)
             handle.write("\n")
 
-    def contains(self, source: str, job_id: str) -> bool:
-        return self._key(source, job_id) in self.data["jobs"]
+    def _new_internal_id(self) -> str:
+        number = self.data["next_internal_job_number"]
+        self.data["next_internal_job_number"] += 1
+        return f"JR-{number:06d}"
 
-    def get(self, source: str, job_id: str) -> dict | None:
-        return self.data["jobs"].get(self._key(source, job_id))
+    @staticmethod
+    def source_key(source: str, source_job_id: str) -> str:
+        return f"{source}:{source_job_id}"
 
-    def register(self, source: str, job_id: str, status: str = "NEW", **metadata) -> dict:
-        if status not in VALID_STATUSES:
-            raise ValueError(f"Invalid job status: {status}")
+    def find_by_source(self, source: str, source_job_id: str) -> dict | None:
+        return self.data["job_sources"].get(self.source_key(source, source_job_id))
 
-        key = self._key(source, job_id)
-        now = datetime.now(timezone.utc).isoformat()
-        existing = self.data["jobs"].get(key)
-
+    def ingest_source_job(self, source: str, source_job_id: str, source_url: str | None = None, raw_data: dict | None = None) -> tuple[str, bool]:
+        """Register an external posting. Returns (internal_job_id, is_new_source_posting)."""
+        key = self.source_key(source, str(source_job_id))
+        now = utcnow()
+        existing = self.data["job_sources"].get(key)
         if existing:
             existing["last_seen_at"] = now
             existing["seen_count"] = existing.get("seen_count", 1) + 1
-            existing.update({k: v for k, v in metadata.items() if v is not None})
-            return existing
+            return existing["internal_job_id"], False
 
-        record = {
-            "source": source,
-            "job_id": str(job_id),
-            "status": status,
+        internal_id = self._new_internal_id()
+        self.data["jobs"][internal_id] = {
+            "internal_job_id": internal_id,
+            "status": "NEW",
             "status_reason": None,
+            "created_at": now,
+            "updated_at": now,
+            "raw_data": raw_data or {},
+        }
+        self.data["job_sources"][key] = {
+            "internal_job_id": internal_id,
+            "source": source,
+            "source_job_id": str(source_job_id),
+            "source_url": source_url,
             "first_seen_at": now,
             "last_seen_at": now,
             "seen_count": 1,
         }
-        record.update({k: v for k, v in metadata.items() if v is not None})
-        self.data["jobs"][key] = record
-        return record
+        return internal_id, True
 
-    def set_status(self, source: str, job_id: str, status: str, reason: str | None = None) -> dict:
-        if status not in VALID_STATUSES:
+    def link_source(self, internal_job_id: str, source: str, source_job_id: str, source_url: str | None = None) -> None:
+        """Link another external posting to an already known opportunity."""
+        if internal_job_id not in self.data["jobs"]:
+            raise KeyError(f"Unknown internal job: {internal_job_id}")
+        key = self.source_key(source, str(source_job_id))
+        if key in self.data["job_sources"]:
+            return
+        now = utcnow()
+        self.data["job_sources"][key] = {
+            "internal_job_id": internal_job_id,
+            "source": source,
+            "source_job_id": str(source_job_id),
+            "source_url": source_url,
+            "first_seen_at": now,
+            "last_seen_at": now,
+            "seen_count": 1,
+        }
+
+    def set_job_status(self, internal_job_id: str, status: str, reason: str | None = None, purge_payload: bool = False) -> None:
+        if status not in VALID_JOB_STATUSES:
             raise ValueError(f"Invalid job status: {status}")
-        record = self.get(source, job_id)
-        if record is None:
-            raise KeyError(f"Unknown job: {source}:{job_id}")
-        record["status"] = status
-        record["status_reason"] = reason
-        record["status_updated_at"] = datetime.now(timezone.utc).isoformat()
-        return record
+        job = self.data["jobs"].get(internal_job_id)
+        if job is None:
+            raise KeyError(f"Unknown internal job: {internal_job_id}")
+        job["status"] = status
+        job["status_reason"] = reason
+        job["updated_at"] = utcnow()
+        if purge_payload:
+            job["raw_data"] = {}
 
-    @staticmethod
-    def _key(source: str, job_id: str) -> str:
-        return f"{source}:{job_id}"
+    def start_run(self, run_id: str, source: str, search: dict) -> None:
+        self.data["runs"][run_id] = {
+            "run_id": run_id,
+            "source": source,
+            "search": search,
+            "started_at": utcnow(),
+            "finished_at": None,
+            "status": "RUNNING",
+            "processed": False,
+            "raw_file": None,
+            "raw_records": 0,
+            "unique_records": 0,
+            "imported": 0,
+            "known": 0,
+            "errors": 0,
+            "error_description": None,
+        }
+
+    def finish_run(self, run_id: str, status: str, *, processed: bool, raw_file: str | None = None, raw_records: int = 0, unique_records: int = 0, imported: int = 0, known: int = 0, errors: int = 0, error_description: str | None = None) -> None:
+        if status not in VALID_RUN_STATUSES - {"RUNNING"}:
+            raise ValueError(f"Invalid final run status: {status}")
+        run = self.data["runs"].get(run_id)
+        if run is None:
+            raise KeyError(f"Unknown run: {run_id}")
+        run.update({
+            "finished_at": utcnow(),
+            "status": status,
+            "processed": processed,
+            "raw_file": raw_file,
+            "raw_records": raw_records,
+            "unique_records": unique_records,
+            "imported": imported,
+            "known": known,
+            "errors": errors,
+            "error_description": error_description,
+        })
