@@ -1,0 +1,43 @@
+version: 0
+status: MVP
+purpose: Fast first-pass prioritisation so the user can start reviewing real jobs.
+
+principles:
+  - Evaluate the complete job description, not only the title.
+  - Reward transferable experience when responsibilities are equivalent.
+  - Do not require every technical keyword to match.
+  - Separate lack of evidence from a genuine mismatch.
+  - Do not invent salary, modality, requirements or responsibilities when absent.
+  - A different industry is not automatically a rejection if project, engineering and leadership content transfers.
+
+assessment_dimensions:
+  responsibility_and_seniority: 25
+  project_program_delivery: 20
+  engineering_technical_environment: 20
+  leadership_and_stakeholders: 15
+  sector_domain_transferability: 10
+  critical_infrastructure_availability: 10
+
+decision_bands:
+  HIGH_INTEREST: 80
+  INTERESTING: 65
+  REVIEW: 50
+  LOW_INTEREST: 0
+
+hard_barriers_v0:
+  - Explicitly junior or entry-level position with no meaningful senior responsibility.
+  - Role is clearly outside the candidate's professional domain and has no credible transferable management, engineering or technical-services component.
+  - Mandatory requirement explicitly stated by the employer that is clearly incompatible with the candidate profile.
+
+output_required:
+  - score
+  - decision
+  - short_reason
+  - strongest_matches
+  - gaps_or_risks
+  - hard_barriers
+  - evidence_from_job
+
+calibration_note: >
+  These weights and bands are provisional. They must be recalibrated later using
+  the user's decisions on real vacancies and a structured profile interview module.
