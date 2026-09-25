@@ -1,0 +1,21 @@
+name: Audit Job Radar Database
+
+on:
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Audit SQLite database
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+        run: python tools/audit_database.py
