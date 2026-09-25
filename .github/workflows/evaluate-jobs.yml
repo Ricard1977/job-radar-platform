@@ -33,7 +33,7 @@ jobs:
       - name: Evaluate unevaluated jobs with Gemini
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          JOB_RADAR_AI_MODEL: gemini-2.5-flash-lite
+          JOB_RADAR_AI_MODEL: gemini-3.5-flash-lite
           JOB_RADAR_AI_LIMIT: ${{ inputs.limit }}
           PYTHONPATH: ${{ github.workspace }}
         run: python ai/evaluate_jobs.py
