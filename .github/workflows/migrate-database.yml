@@ -1,0 +1,36 @@
+name: Migrate Job Registry to SQLite
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: job-radar-database-migration
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Migrate and validate
+        run: python db/migrate_json_to_sqlite.py
+
+      - name: Persist database only after successful validation
+        run: |
+          git config user.name "job-radar-bot"
+          git config user.email "job-radar-bot@users.noreply.github.com"
+          git add data/job_radar.db
+          if ! git diff --cached --quiet; then
+            git commit -m "Migrate operational registry to SQLite"
+            git push
+          fi
