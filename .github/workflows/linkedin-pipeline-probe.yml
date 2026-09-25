@@ -3,6 +3,13 @@ name: LinkedIn Pipeline Probe
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
+concurrency:
+  group: linkedin-pipeline-probe-registry
+  cancel-in-progress: false
+
 jobs:
   probe:
     runs-on: ubuntu-latest
@@ -22,3 +29,16 @@ jobs:
         env:
           PYTHONPATH: ${{ github.workspace }}
         run: python engines/linkedin/run_pipeline_probe.py
+
+      - name: Persist registry
+        if: always()
+        run: |
+          if [ -f data/pipeline_probe_registry.json ]; then
+            git config user.name "job-radar-bot"
+            git config user.email "job-radar-bot@users.noreply.github.com"
+            git add data/pipeline_probe_registry.json
+            if ! git diff --cached --quiet; then
+              git commit -m "Persist LinkedIn pipeline probe registry"
+              git push
+            fi
+          fi
