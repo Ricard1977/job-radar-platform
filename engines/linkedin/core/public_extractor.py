@@ -8,7 +8,6 @@ access controls.
 
 from dataclasses import asdict, dataclass
 import re
-from urllib.parse import urlencode
 
 import requests
 from bs4 import BeautifulSoup
@@ -25,6 +24,8 @@ class PublicJob:
     company: str
     location: str
     job_url: str
+    posted_time: str
+    posted_datetime: str
 
 
 def _clean(value: str) -> str:
@@ -80,6 +81,10 @@ def fetch_public_jobs(search, start: int = 0, timeout: int = 20) -> list[PublicJ
         title_node = card.select_one("h3.base-search-card__title")
         company_node = card.select_one("h4.base-search-card__subtitle")
         location_node = card.select_one("span.job-search-card__location")
+        time_node = card.select_one("time")
+
+        posted_time = _clean(time_node.get_text(" ", strip=True)) if time_node else ""
+        posted_datetime = time_node.get("datetime", "").strip() if time_node else ""
 
         jobs.append(
             PublicJob(
@@ -88,6 +93,8 @@ def fetch_public_jobs(search, start: int = 0, timeout: int = 20) -> list[PublicJ
                 company=_clean(company_node.get_text(" ", strip=True)) if company_node else "",
                 location=_clean(location_node.get_text(" ", strip=True)) if location_node else "",
                 job_url=url,
+                posted_time=posted_time,
+                posted_datetime=posted_datetime,
             )
         )
 
