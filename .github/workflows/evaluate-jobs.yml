@@ -38,13 +38,17 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
         run: python ai/evaluate_jobs.py
 
-      - name: Persist AI evaluations
+      - name: Build safe frontend snapshot
+        if: success()
+        run: python frontend/export_dashboard.py
+
+      - name: Persist AI evaluations and dashboard snapshot
         if: success()
         run: |
           git config user.name "job-radar-bot"
           git config user.email "job-radar-bot@users.noreply.github.com"
-          git add data/job_radar.db
+          git add data/job_radar.db docs/data/jobs.json
           if ! git diff --cached --quiet; then
-            git commit -m "Add Gemini job evaluations"
+            git commit -m "Add Gemini job evaluations and dashboard snapshot"
             git push
           fi
