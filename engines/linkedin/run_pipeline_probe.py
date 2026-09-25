@@ -21,7 +21,7 @@ from engines.linkedin.input.search_config import load_searches
 CONFIG_PATH = ENGINE_DIR / "config" / "searches.yaml"
 PROBE_REGISTRY = ROOT / "data" / "pipeline_probe_registry.json"
 RAW_DIR = ROOT / "data" / "raw" / "linkedin"
-DETAIL_LIMIT = 3  # Probe safety limit only; production pipeline will not use this cap.
+DETAIL_LIMIT = 3
 
 
 def utcnow() -> str:
@@ -62,16 +62,13 @@ def main() -> int:
     registry.start_run(run_id, "linkedin", {"search_id": search.search_id, "keywords": search.keywords, "location": search.location, "date_posted": search.date_posted})
 
     try:
-        # Small real search page: enough to validate the orchestration without stressing LinkedIn.
         cards = fetch_public_jobs(search, start=0)
         unique = {job.job_id: job for job in cards}
         raw_payload = {"run_id": run_id, "source": "linkedin", "created_at": utcnow(), "search_id": search.search_id, "jobs": jobs_as_dicts(list(unique.values()))}
         write_raw_batch(raw_path, raw_payload)
 
-        imported = 0
-        known = 0
-        detail_downloaded = 0
-        detail_errors = 0
+        imported = known = detail_downloaded = detail_errors = 0
+        detail_error_items = []
         batch = read_raw_batch(raw_path)
 
         for raw_job in batch["jobs"]:
@@ -84,21 +81,23 @@ def main() -> int:
 
             internal_id, _ = registry.ingest_source_job("linkedin", source_id, raw_job.get("job_url"), raw_job)
             imported += 1
-            if detail_downloaded < DETAIL_LIMIT:
+            if detail_downloaded + detail_errors < DETAIL_LIMIT:
                 try:
                     detail = fetch_detail(source_id)
                     registry.data["jobs"][internal_id]["raw_data"].update(detail)
                     registry.data["jobs"][internal_id]["updated_at"] = utcnow()
                     detail_downloaded += 1
                 except Exception as exc:
-                    registry.data["jobs"][internal_id]["detail_error"] = f"{type(exc).__name__}: {exc}"
+                    error_text = f"{type(exc).__name__}: {exc}"
+                    registry.data["jobs"][internal_id]["detail_error"] = error_text
+                    detail_error_items.append({"internal_job_id": internal_id, "source_job_id": source_id, "error": error_text})
                     detail_errors += 1
 
-        registry.finish_run(run_id, "SUCCESS", processed=True, raw_file=str(raw_path), raw_records=len(cards), unique_records=len(unique), imported=imported, known=known, errors=detail_errors)
+        registry.finish_run(run_id, "SUCCESS", processed=True, raw_file=str(raw_path), raw_records=len(cards), unique_records=len(unique), imported=imported, known=known, errors=detail_errors, error_description=json.dumps(detail_error_items, ensure_ascii=False) if detail_error_items else None)
         registry.save()
         delete_processed_raw(raw_path)
 
-        print(json.dumps({"run_id": run_id, "status": "SUCCESS", "raw_created": True, "raw_deleted_after_processing": not raw_path.exists(), "raw_records": len(cards), "unique_records": len(unique), "new": imported, "known": known, "details_downloaded": detail_downloaded, "detail_errors": detail_errors, "probe_detail_limit": DETAIL_LIMIT}, ensure_ascii=False, indent=2))
+        print(json.dumps({"run_id": run_id, "status": "SUCCESS", "raw_created": True, "raw_deleted_after_processing": not raw_path.exists(), "raw_records": len(cards), "unique_records": len(unique), "new": imported, "known": known, "details_downloaded": detail_downloaded, "detail_errors": detail_errors, "detail_error_items": detail_error_items, "probe_detail_limit": DETAIL_LIMIT, "registry_file": str(PROBE_REGISTRY)}, ensure_ascii=False, indent=2))
         return 0
     except Exception as exc:
         registry.finish_run(run_id, "ERROR", processed=False, raw_file=str(raw_path) if raw_path.exists() else None, error_description=f"{type(exc).__name__}: {exc}")
