@@ -57,7 +57,7 @@ def main() -> int:
                         "unique_job_ids": len(unique_by_id),
                         "duplicates_across_pages": duplicate_count,
                         "pages": pages,
-                        "sample_unique": jobs_as_dicts(list(unique_by_id.values())[:10]),
+                        "all_unique_jobs": jobs_as_dicts(list(unique_by_id.values())),
                     },
                     ensure_ascii=False,
                     indent=2,
