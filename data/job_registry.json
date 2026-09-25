@@ -1,4 +1,7 @@
 {
-  "schema_version": 1,
-  "jobs": {}
+  "schema_version": 2,
+  "next_internal_job_number": 1,
+  "jobs": {},
+  "job_sources": {},
+  "runs": {}
 }
