@@ -1,4 +1,4 @@
-"""Probe real LinkedIn public-data pagination behavior."""
+"""Probe LinkedIn public-data pagination until the result stream ends."""
 
 import json
 from pathlib import Path
@@ -12,7 +12,8 @@ from input.search_config import load_searches
 
 
 CONFIG_PATH = ENGINE_DIR / "config" / "searches.yaml"
-PROBE_STARTS = (0, 10, 20, 30, 40)
+PAGE_STEP = 10
+MAX_PAGES = 100  # Safety guard only; not a relevance/result filter.
 
 
 def main() -> int:
@@ -22,9 +23,11 @@ def main() -> int:
     for search in searches:
         all_jobs = []
         pages = []
+        stop_reason = None
 
         try:
-            for start in PROBE_STARTS:
+            for page_number in range(MAX_PAGES):
+                start = page_number * PAGE_STEP
                 jobs = fetch_public_jobs(search, start=start)
                 pages.append(
                     {
@@ -33,7 +36,15 @@ def main() -> int:
                         "job_ids": [job.job_id for job in jobs],
                     }
                 )
+
+                if not jobs:
+                    stop_reason = f"empty_block_at_start_{start}"
+                    break
+
                 all_jobs.extend(jobs)
+            else:
+                stop_reason = f"security_limit_{MAX_PAGES}_pages_reached"
+                overall_error = True
 
             unique_by_id = {job.job_id: job for job in all_jobs}
             duplicate_count = len(all_jobs) - len(unique_by_id)
@@ -42,9 +53,12 @@ def main() -> int:
                 overall_error = True
                 status = "ERROR"
                 description = "LinkedIn returned no parseable public job cards."
+            elif stop_reason.startswith("security_limit_"):
+                status = "ERROR"
+                description = "Safety page limit reached before an empty block was found."
             else:
                 status = "SUCCESS"
-                description = "Pagination probe completed."
+                description = "Automatic pagination reached an empty result block."
 
             print(
                 json.dumps(
@@ -52,7 +66,9 @@ def main() -> int:
                         "search_id": search.search_id,
                         "status": status,
                         "description": description,
-                        "probe_starts": list(PROBE_STARTS),
+                        "page_step": PAGE_STEP,
+                        "pages_requested": len(pages),
+                        "stop_reason": stop_reason,
                         "records_received_total": len(all_jobs),
                         "unique_job_ids": len(unique_by_id),
                         "duplicates_across_pages": duplicate_count,
