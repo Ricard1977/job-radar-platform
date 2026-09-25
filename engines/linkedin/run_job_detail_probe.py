@@ -34,6 +34,61 @@ def first_text(soup, selectors: list[str]) -> str | None:
     return None
 
 
+def parse_number(value: str | None) -> float | None:
+    if not value:
+        return None
+    raw = value.replace(" ", "")
+    if "," in raw and "." in raw:
+        if raw.rfind(",") > raw.rfind("."):
+            raw = raw.replace(".", "").replace(",", ".")
+        else:
+            raw = raw.replace(",", "")
+    elif "," in raw:
+        parts = raw.split(",")
+        raw = "".join(parts) if len(parts[-1]) == 3 else raw.replace(",", ".")
+    elif "." in raw:
+        parts = raw.split(".")
+        if len(parts[-1]) == 3:
+            raw = "".join(parts)
+    try:
+        return float(raw)
+    except ValueError:
+        return None
+
+
+def extract_salary(page_text: str) -> dict:
+    # Keep the original visible range and also expose normalized components.
+    pattern = re.compile(
+        r"(?P<currency1>€|EUR|USD|\$)\s*"
+        r"(?P<min>[\d.,]+)"
+        r"(?:\s*[-–—]\s*(?P<currency2>€|EUR|USD|\$)?\s*(?P<max>[\d.,]+))?"
+        r"(?:\s*(?P<period>/\s*(?:year|month|hour|año|mes|hora)|per\s+(?:year|month|hour)|al\s+(?:año|mes|hora)))?",
+        flags=re.IGNORECASE,
+    )
+    match = pattern.search(page_text)
+    if not match:
+        return {
+            "salary_text": None,
+            "salary_min": None,
+            "salary_max": None,
+            "salary_currency": None,
+            "salary_period": None,
+        }
+
+    currency_token = match.group("currency1")
+    currency = "EUR" if currency_token in {"€", "EUR", "eur"} else "USD"
+    period_raw = match.group("period")
+    period = clean(period_raw).lower() if period_raw else None
+
+    return {
+        "salary_text": clean(match.group(0)),
+        "salary_min": parse_number(match.group("min")),
+        "salary_max": parse_number(match.group("max")),
+        "salary_currency": currency,
+        "salary_period": period,
+    }
+
+
 def main() -> int:
     headers = {
         "User-Agent": (
@@ -58,11 +113,7 @@ def main() -> int:
             criteria[label] = value
 
     page_text = clean(soup.get_text(" ", strip=True))
-    salary_match = re.search(
-        r"(?:€|EUR|USD|\$)\s?[\d.,]+(?:\s*[-–]\s*(?:€|EUR|USD|\$)?\s?[\d.,]+)?(?:\s*/\s*(?:year|month|hour|año|mes|hora))?",
-        page_text,
-        flags=re.IGNORECASE,
-    )
+    salary = extract_salary(page_text)
 
     workplace_type = None
     workplace_patterns = [
@@ -86,7 +137,7 @@ def main() -> int:
         "description": text_or_none(description_node),
         "posted_text": text_or_none(time_node),
         "posted_datetime": attr_or_none(time_node, "datetime"),
-        "salary_visible": salary_match.group(0) if salary_match else None,
+        **salary,
         "workplace_type_detected": workplace_type,
         "job_criteria": criteria,
         "public_metadata": {
