@@ -1,0 +1,7 @@
+version: 1
+
+searches:
+  - search_id: SEARCH_001
+    keywords: "Project Manager"
+    location: "Barcelona, España"
+    date_posted: "past_24_hours"
