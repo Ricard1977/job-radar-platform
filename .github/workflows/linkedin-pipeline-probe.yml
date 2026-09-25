@@ -1,0 +1,24 @@
+name: LinkedIn Pipeline Probe
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 pyyaml
+
+      - name: Run end-to-end pipeline probe
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+        run: python engines/linkedin/run_pipeline_probe.py
