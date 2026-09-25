@@ -30,8 +30,15 @@ def fetch_all(search):
 
 def parse_salary(text):
     if not text: return None,None,None,None
-    currency='EUR' if ('€' in text or 'EUR' in text.upper()) else ('USD' if ('$' in text or 'USD' in text.upper()) else ('GBP' if ('£' in text or 'GBP' in text.upper()) else None)
-    period='year' if re.search(r'/\s*(?:yr|year|año)|per year|al año',text,re.I) else ('hour' if re.search(r'/\s*(?:hr|hour|h)|per hour|hora',text,re.I) else ('month' if re.search(r'/\s*(?:mo|month)|per month|mes',text,re.I) else None))
+    upper=text.upper()
+    if '€' in text or 'EUR' in upper: currency='EUR'
+    elif '$' in text or 'USD' in upper: currency='USD'
+    elif '£' in text or 'GBP' in upper: currency='GBP'
+    else: currency=None
+    if re.search(r'/\s*(?:yr|year|año)|per year|al año',text,re.I): period='year'
+    elif re.search(r'/\s*(?:hr|hour|h)|per hour|hora',text,re.I): period='hour'
+    elif re.search(r'/\s*(?:mo|month)|per month|mes',text,re.I): period='month'
+    else: period=None
     vals=[]
     for n,k in re.findall(r'([0-9]+(?:[.,][0-9]+)?)\s*([kK]?)',text):
         try:
