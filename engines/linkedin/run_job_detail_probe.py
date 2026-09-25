@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 import requests
 from bs4 import BeautifulSoup
 
-JOB_ID = "4465220423"
+JOB_ID = "4462164766"
 JOB_URL = f"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{JOB_ID}"
 
 
@@ -81,9 +81,7 @@ def main() -> int:
         "title": first_text(soup, ["h2.top-card-layout__title", "h1"]),
         "company": first_text(soup, ["a.topcard__org-name-link", ".topcard__flavor"]),
         "company_url": attr_or_none(company_link, "href"),
-        "company_logo_url": (
-            attr_or_none(logo_node, "data-delayed-url") or attr_or_none(logo_node, "src")
-        ),
+        "company_logo_url": attr_or_none(logo_node, "data-delayed-url") or attr_or_none(logo_node, "src"),
         "location": first_text(soup, ["span.topcard__flavor--bullet", ".topcard__flavor--bullet"]),
         "description": text_or_none(description_node),
         "posted_text": text_or_none(time_node),
@@ -92,18 +90,8 @@ def main() -> int:
         "workplace_type_detected": workplace_type,
         "job_criteria": criteria,
         "public_metadata": {
-            "applicant_or_status_text": first_text(
-                soup,
-                [
-                    ".num-applicants__caption",
-                    ".topcard__flavor--metadata",
-                    ".posted-time-ago__text",
-                ],
-            ),
-            "apply_url": attr_or_none(
-                soup.select_one("a.apply-button, a[data-tracking-control-name*='apply']"),
-                "href",
-            ),
+            "applicant_or_status_text": first_text(soup, [".num-applicants__caption", ".topcard__flavor--metadata", ".posted-time-ago__text"]),
+            "apply_url": attr_or_none(soup.select_one("a.apply-button, a[data-tracking-control-name*='apply']"), "href"),
         },
         "extraction_datetime": datetime.now(timezone.utc).isoformat(),
     }
