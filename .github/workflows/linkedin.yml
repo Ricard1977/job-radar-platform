@@ -30,15 +30,15 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
         run: python engines/linkedin/run.py
 
-      - name: Persist operational registry
+      - name: Persist operational database
         if: always()
         run: |
-          if [ -f data/job_registry.json ]; then
+          if [ -f data/job_radar.db ]; then
             git config user.name "job-radar-bot"
             git config user.email "job-radar-bot@users.noreply.github.com"
-            git add data/job_registry.json
+            git add data/job_radar.db
             if ! git diff --cached --quiet; then
-              git commit -m "Update operational job registry"
+              git commit -m "Update operational Job Radar database"
               git push
             fi
           fi
