@@ -1,0 +1,68 @@
+version: 0
+status: MVP
+candidate:
+  name: Ricard Tejero
+  base_location: Barcelona
+  experience_years: 20+
+  headline: Senior Project Manager | Engineering | Industrial Automation IT/OT | Critical Infrastructure
+
+core_value:
+  - senior project management
+  - leadership of multidisciplinary technical teams
+  - engineering and technical services
+  - industrial automation and control
+  - critical infrastructure and business continuity
+  - stakeholder and customer management
+  - recovery and delivery of complex projects under pressure
+
+strong_domains:
+  - industrial automation
+  - critical infrastructure
+  - data centers / CPD
+  - pharma
+  - chemical
+  - airports
+  - hospitals
+  - industrial engineering
+  - building management systems
+
+technical_context:
+  - PLC
+  - SCADA
+  - DCS
+  - SIS
+  - BMS
+  - OT / IT
+  - industrial networks
+  - high availability
+  - redundant architectures
+  - SIL2 / SIL3
+  - AVEVA / Wonderware System Platform
+  - Schneider Electric M580 / Quantum Hot Standby
+  - HVAC / industrial climate control
+  - disaster recovery / business continuity
+
+role_families:
+  primary:
+    - Senior Project Manager
+    - Technical Project Manager
+    - Engineering Project Manager
+    - Project Director
+    - Engineering Manager
+    - Technical Services Manager
+    - Technical Office Manager
+  adjacent:
+    - Program Manager
+    - PMO Lead / PMO Manager
+    - Service Manager
+    - Field Services Manager
+    - Operations Manager
+    - Commissioning Manager
+    - Technical Support Manager
+    - Delivery Manager
+    - Infrastructure Project Manager
+
+important_instruction: >
+  Never reject an opportunity only because its job title is not in the target list.
+  Evaluate actual responsibilities, seniority, leadership scope, engineering content,
+  technical environment and transferability of the candidate's experience.
