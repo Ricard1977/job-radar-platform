@@ -1,4 +1,4 @@
-name: Evaluate Jobs with AI
+name: Evaluate Jobs with Gemini
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
       limit:
         description: "Maximum unevaluated jobs to process"
         required: false
-        default: "25"
+        default: "10"
 
 permissions:
   contents: write
@@ -28,12 +28,12 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install openai pyyaml
+        run: pip install pyyaml
 
-      - name: Evaluate unevaluated jobs
+      - name: Evaluate unevaluated jobs with Gemini
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          JOB_RADAR_AI_MODEL: gpt-5.6-luna
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          JOB_RADAR_AI_MODEL: gemini-2.5-flash-lite
           JOB_RADAR_AI_LIMIT: ${{ inputs.limit }}
           PYTHONPATH: ${{ github.workspace }}
         run: python ai/evaluate_jobs.py
@@ -45,6 +45,6 @@ jobs:
           git config user.email "job-radar-bot@users.noreply.github.com"
           git add data/job_radar.db
           if ! git diff --cached --quiet; then
-            git commit -m "Add AI job evaluations"
+            git commit -m "Add Gemini job evaluations"
             git push
           fi
