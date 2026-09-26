@@ -1,0 +1,26 @@
+name: Migrate SQLite to Supabase
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Migrate SQLite to Supabase
+        env:
+          SUPABASE_URL: https://auiafqbsgxwfevlbypdf.supabase.co
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: python db/migrate_sqlite_to_supabase.py
