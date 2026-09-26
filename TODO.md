@@ -4,20 +4,23 @@ Este fichero centraliza los incrementos pendientes del producto para no perder i
 
 ## Prioridad inmediata
 
-- [ ] Persistir el feedback del frontend en SQLite (`user_job_feedback`) en lugar de dejarlo únicamente en `localStorage`.
-- [ ] Persistir y sincronizar el estado de candidatura: aplicado/no aplicado, fecha de aplicación y evolución posterior.
-- [ ] Mantener filtros combinables de candidatura: todas / aplicadas / no aplicadas / sin marcar.
-- [ ] Mostrar estado de candidatura directamente en cada tarjeta.
+- [ ] Persistir las acciones rápidas del frontend en SQLite en lugar de `localStorage`.
+- [ ] UX simplificada: valoración humana únicamente `Me interesa` / `No me interesa`.
+- [ ] Candidatura simplificada: un único estado accionable `He aplicado` y fecha de aplicación.
+- [ ] Mantener en la tarjeta, fuera de la ficha detallada, los accesos rápidos `Me interesa`, `No me interesa` y `He aplicado`.
+- [ ] Filtros humanos simples: `Todas` / `Me interesa` / `He aplicado`; combinables con filtros de encaje IA.
+- [ ] Cuando una oferta se marque `No me interesa`, mostrar acción `Eliminar`.
+- [ ] Al confirmar `Eliminar`, retirar la oferta activa de la BBDD principal conservando en una tabla de ofertas tratadas los identificadores y metadatos mínimos necesarios para deduplicación y para impedir su reaparición.
+- [ ] Diseñar tabla `processed_jobs` / `treated_jobs`: Job Radar ID, IDs externos por fuente, fuente, URL/huella de deduplicación, fecha, decisión humana y los datos mínimos necesarios para aprendizaje y bloqueo de reingesta.
+- [ ] El borrado no debe destruir señales útiles para learning: conservar la valoración `No me interesa` y referencia a la evaluación IA antes de purgar datos innecesarios.
 - [ ] Completar Frontend V1 y revisar UX/diseño visual después de uso real.
-- [ ] Continuar generando resumen y análisis de las ofertas en castellano conservando la descripción original.
+- [ ] Continuar generando resumen y análisis en castellano conservando la descripción original.
 
 ## Learning / calibración
 
-- [ ] Mantener como variables independientes `USER_INTEREST` y `APPLICATION_STATUS`.
-- [ ] Registrar `DECISION_REASON` y comentario opcional cuando una combinación aporte información relevante.
-- [ ] Analizar especialmente: interesa + no aplica; dudosa + aplica; no interesa + aplica.
-- [ ] Cruzar feedback humano con score, decisión y dimensiones de `AI_EVALUATIONS`.
-- [ ] Detectar patrones de preferencias y frenos reales antes de modificar criterios automáticamente.
+- [ ] Mantener independientes `USER_INTEREST` y `APPLICATION_STATUS`: una oferta puede interesar y no haberse aplicado, o haberse aplicado aunque el interés posterior cambie.
+- [ ] Cruzar `Me interesa` / `No me interesa` y `He aplicado` con score, decisión y dimensiones de `AI_EVALUATIONS`.
+- [ ] Detectar patrones de preferencias y comportamiento antes de modificar criterios automáticamente.
 - [ ] Crear proceso de calibración versionado (`candidate_profile_v1`, criterios v1, etc.) y conservar trazabilidad de qué versión evaluó cada oferta.
 - [ ] Recuperar el módulo/entrevista pendiente para extraer criterios profesionales más profundos y combinar sus resultados con el comportamiento real.
 
@@ -53,13 +56,13 @@ Para cada fuente candidata evaluar: volumen de puestos relevantes, geografía, s
 - [ ] Utilizar `sources` + `job_sources.external_job_id` para incorporar nuevos conectores sin duplicar `jobs`.
 - [ ] Mejorar deduplicación cross-source para relacionar la misma vacante encontrada en LinkedIn y otros portales con un único Job Radar ID.
 - [ ] Conservar todas las fuentes/orígenes de una oferta y permitir verlas desde la ficha.
-- [ ] No almacenar la oferta completa cuando sea descartada en etapas tempranas si basta con conservar el identificador/origen según la política definida.
+- [ ] Consultar la tabla de ofertas tratadas durante la ingesta para bloquear ofertas previamente eliminadas aunque vuelvan a aparecer en una fuente.
 
-## Seguimiento de candidaturas
+## Seguimiento de candidaturas — fase posterior
 
-- [ ] Evolucionar de aplicado/no aplicado a pipeline: no aplicada / aplicada / en proceso / entrevista / descartada por empresa / oferta recibida / cerrada-retirada.
-- [ ] Registrar fechas, contactos, próxima acción y notas cuando sea útil.
-- [ ] Crear métricas: ofertas relevantes, tasa de aplicación, entrevistas, conversiones y motivos de no aplicación.
+- [ ] Cuando el MVP esté estabilizado, valorar evolución de `He aplicado` a pipeline: en proceso / entrevista / descartada por empresa / oferta recibida / cerrada-retirada.
+- [ ] Registrar contactos, próxima acción y notas cuando aporten valor.
+- [ ] Crear métricas: ofertas relevantes, aplicaciones, entrevistas y conversiones.
 
 ## Pendientes aparcados
 
