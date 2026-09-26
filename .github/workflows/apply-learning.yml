@@ -16,16 +16,14 @@ jobs:
   apply:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Apply learned preferences
+      - name: Process Apply Learning requests
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           JOB_RADAR_LEARNING_LIMIT: '200'
-        run: python ai/apply_learning.py
+        run: python ai/process_learning_requests.py
