@@ -1,7 +1,47 @@
-version: 1
+version: 2
 
+# Search portfolio derived from Ricard's LinkedIn saved searches.
+# Workplace mode is intentionally NOT filtered: onsite, hybrid and remote are all allowed.
+# Daily workflow searches only jobs posted in the past 24 hours.
 searches:
-  - search_id: SEARCH_001
-    keywords: "Project Manager"
+  # Barcelona / Catalonia
+  - search_id: BCN_TECH_PM
+    keywords: '"Senior Technical Project Manager" OR "Technical Project Manager" OR "Gerente de Proyectos Técnicos Senior"'
     location: "Barcelona, España"
+    date_posted: "past_24_hours"
+
+  - search_id: BCN_ENGINEERING_MANAGER
+    keywords: '"Engineering Manager" OR "Head of Engineering" OR "Jefe de ingeniería"'
+    location: "Barcelona, España"
+    date_posted: "past_24_hours"
+
+  - search_id: BCN_AREA_MANAGER
+    keywords: '"Area Manager" OR "Gerente de área"'
+    location: "Barcelona, España"
+    date_posted: "past_24_hours"
+
+  - search_id: BCN_INDUSTRIAL_AUTOMATION_LEADERSHIP
+    keywords: '(responsable OR manager OR director) AND (industrial OR industry OR automation OR automatización) NOT junior'
+    location: "Barcelona, España"
+    date_posted: "past_24_hours"
+
+  # United Arab Emirates
+  - search_id: UAE_TECH_PM
+    keywords: '"Senior Technical Project Manager" OR "Technical Project Manager"'
+    location: "United Arab Emirates"
+    date_posted: "past_24_hours"
+
+  - search_id: UAE_ENGINEERING_MANAGER
+    keywords: '"Engineering Manager" OR "Head of Engineering"'
+    location: "United Arab Emirates"
+    date_posted: "past_24_hours"
+
+  - search_id: UAE_AREA_MANAGER
+    keywords: '"Area Manager"'
+    location: "United Arab Emirates"
+    date_posted: "past_24_hours"
+
+  - search_id: UAE_INDUSTRIAL_AUTOMATION_LEADERSHIP
+    keywords: '(responsible OR manager OR director) AND (industrial OR industry OR automation) NOT junior'
+    location: "United Arab Emirates"
     date_posted: "past_24_hours"
