@@ -2,6 +2,38 @@
 
 Este fichero centraliza los incrementos pendientes del producto para no perder ideas durante el desarrollo Agile.
 
+## Nueva navegación principal / estructura de producto
+
+- [ ] Crear un menú principal persistente de Job Radar con acceso a las áreas funcionales del producto.
+
+### 1. Mi perfil de trabajo
+
+- [ ] Crear pantalla `Mi perfil de trabajo`.
+- [ ] Incorporar la información profesional extraída de la importación del CV del usuario y estructurarla para que pueda ser utilizada por el motor de evaluación y búsqueda.
+- [ ] Organizar el perfil, inicialmente, en: objetivo/posicionamiento profesional; roles y nivel de seniority; experiencia profesional; sectores; competencias de gestión; competencias técnicas; tecnologías/herramientas; liderazgo/equipos; idiomas; formación/certificaciones; ubicaciones/movilidad; preferencias y restricciones de búsqueda.
+- [ ] Permitir revisar y editar la información extraída del CV antes de considerarla parte activa del perfil.
+- [ ] Mantener trazabilidad entre información procedente del CV y preferencias aprendidas posteriormente por Job Radar.
+- [ ] Preparar el perfil para futuras reimportaciones/actualizaciones del CV sin perder información validada por el usuario.
+
+### 2. Oportunidades
+
+- [ ] Convertir la pantalla actual de revisión de ofertas en la sección `Oportunidades` del menú principal.
+- [ ] Mantener en esta pantalla la bandeja de entrada, valoración humana, estado de aplicación, encaje IA, filtros avanzados y `Aplicar aprendizaje`.
+
+### 3. Búsquedas
+
+- [ ] Crear pantalla `Búsquedas` para visualizar y administrar todas las búsquedas automáticas del Job Radar.
+- [ ] Mostrar cada búsqueda de forma ordenada con: nombre; estado activa/inactiva; criterios/filtros; localización o localizaciones; alcance/fuente (`LinkedIn`, otra plataforma concreta o `Web / múltiples fuentes`); frecuencia/horario; fecha y hora de la última ejecución; número de ofertas encontradas en la última ejecución; número de ofertas que permanecieron después del filtrado; y estado/resultado de la ejecución.
+- [ ] Permitir `Activar / Desactivar`, `Editar` y `Borrar` cada búsqueda.
+- [ ] Permitir crear nuevas búsquedas manualmente desde el frontend.
+- [ ] Diseñar los criterios/filtros como datos editables y no como configuración fija en código, para que puedan evolucionar sin modificar el repositorio.
+- [ ] Añadir acción `Importar búsqueda / filtros` mediante fichero.
+- [ ] Al importar un fichero, extraer automáticamente posibles criterios de búsqueda: puestos/roles, keywords, exclusiones, seniority, sectores, tecnologías/competencias, localizaciones, fuentes/plataformas, modalidad de trabajo y otros criterios detectables.
+- [ ] Mostrar los filtros extraídos antes de guardarlos para que el usuario pueda aceptar, eliminar o editar individualmente cada criterio.
+- [ ] No activar automáticamente una búsqueda importada hasta que el usuario confirme la configuración final.
+- [ ] Registrar métricas por ejecución para poder mostrar el número de ofertas encontradas y filtradas en la última búsqueda y su fecha.
+- [ ] Preparar el modelo para distinguir búsquedas limitadas a una plataforma de búsquedas abiertas a múltiples fuentes / Web.
+
 ## Prioridad inmediata
 
 - [ ] Persistir las acciones rápidas del frontend en SQLite en lugar de `localStorage`.
