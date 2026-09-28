@@ -1,4 +1,4 @@
-version: 2
+version: 1
 
 # Search portfolio derived from Ricard's LinkedIn saved searches.
 # Workplace mode is intentionally NOT filtered: onsite, hybrid and remote are all allowed.
