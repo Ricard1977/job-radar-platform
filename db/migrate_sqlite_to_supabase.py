@@ -1,6 +1,9 @@
-"""One-way initial migration from the existing SQLite registry to Supabase.
+"""Synchronize the operational SQLite registry to Supabase.
 
-Requires SUPABASE_URL and SUPABASE_SECRET_KEY. Idempotent for natural keys.
+Requires SUPABASE_URL and SUPABASE_SECRET_KEY. The sync is idempotent for
+entities with natural keys. AI evaluations are synchronized incrementally by
+(job_id, model_version) in application code because the original Supabase
+migration does not guarantee a matching unique constraint.
 """
 import json, os, sqlite3, urllib.error, urllib.parse, urllib.request
 from pathlib import Path
@@ -50,16 +53,23 @@ def main():
     for x in rows(c,'job_sources'):
         y=clean(x,['external_job_id','source_url','first_seen_at','last_seen_at','seen_count','active']);y['job_id']=job_ids.get(old_jobs.get(x.get('job_id')));y['source_id']=source_ids.get(old_src.get(x.get('source_id')));js.append(y)
     upsert('job_sources',js,'source_id,external_job_id')
+
+    # Incremental AI evaluation sync.  The legacy schema has no guaranteed
+    # natural unique key for this table, so compare destination pairs first and
+    # insert only evaluations not already present for that job/model version.
+    remote_ev=req('GET','ai_evaluations',query='?select=job_id,model_version')
+    existing_pairs={(str(x.get('job_id')),str(x.get('model_version'))) for x in remote_ev}
     ev=[]
     for x in rows(c,'ai_evaluations'):
-        y=clean(x,['evaluated_at','model_version','decision','score','profile_match','technical_match','management_match','sector_match','seniority_match','strengths','weaknesses','reasoning','created_at']);y['job_id']=job_ids.get(old_jobs.get(x.get('job_id')))
+        remote_job_id=job_ids.get(old_jobs.get(x.get('job_id')))
+        pair=(str(remote_job_id),str(x.get('model_version')))
+        if remote_job_id is None or pair in existing_pairs:continue
+        y=clean(x,['evaluated_at','model_version','decision','score','profile_match','technical_match','management_match','sector_match','seniority_match','strengths','weaknesses','reasoning','created_at']);y['job_id']=remote_job_id
         for k in ('strengths','weaknesses','reasoning'):
             if isinstance(y.get(k),str):
                 try:y[k]=json.loads(y[k])
                 except Exception:y[k]={'text':y[k]}
-        ev.append(y)
-    # Evaluations have no natural unique key in migration 001, so insert only when destination is empty.
-    existing=req('GET','ai_evaluations',query='?select=id&limit=1')
-    if ev and not existing:req('POST','ai_evaluations',ev)
-    print(json.dumps({'sources':len(src),'companies':len(companies),'jobs':len(jobs),'job_sources':len(js),'ai_evaluations':len(ev)},indent=2))
+        ev.append(y);existing_pairs.add(pair)
+    if ev:req('POST','ai_evaluations',ev)
+    print(json.dumps({'sources':len(src),'companies':len(companies),'jobs':len(jobs),'job_sources':len(js),'ai_evaluations_inserted':len(ev)},indent=2))
 if __name__=='__main__':main()
