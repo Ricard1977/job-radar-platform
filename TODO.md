@@ -19,6 +19,11 @@ Este fichero centraliza los incrementos pendientes del producto para no perder i
 
 - [ ] Convertir la pantalla actual de revisión de ofertas en la sección `Oportunidades` del menú principal.
 - [ ] Mantener en esta pantalla la bandeja de entrada, valoración humana, estado de aplicación, encaje IA, filtros avanzados y `Aplicar aprendizaje`.
+- [ ] La cabecera/resumen visible de cada oferta debe mostrar siempre, sin necesidad de abrir la descripción completa: nivel de encaje, puesto, empresa, clasificación/tipo de oportunidad, localización, sector, modalidad y fecha/publicación cuando estén disponibles.
+- [ ] Mostrar el `encaje IA` siempre como porcentaje explícito (`XX %`) y no como valor ambiguo `/100`.
+- [ ] Aplicar señal visual por color al porcentaje/nivel de encaje, manteniendo además el número para no depender únicamente del color. Definir una escala consistente para todos los resultados.
+- [ ] Incluir en la ficha el análisis útil que actualmente entrega el radar programado: `Cumples directamente`, `Transferibilidad`, `Gap real` y `Compensación / requiere validación` cuando haya información suficiente. Debe ser factual, breve y sin maquillar gaps.
+- [ ] Diferenciar claramente datos originales de la oferta de inferencias/análisis IA y de estimaciones externas (por ejemplo, compensación estimada).
 - [ ] Preservar y mostrar la estructura original de la descripción de la oferta siempre que la fuente la proporcione: párrafos, encabezados, listas y bullets. Evitar presentar toda la descripción como un único bloque de texto plano.
 - [ ] Cuando la fuente llegue sin estructura HTML utilizable, reconstruir una presentación legible de forma conservadora (párrafos/listas) sin alterar el contenido de la oferta.
 - [ ] Añadir un `Resumen nuclear IA` de cada oferta: muy breve, factual, directo y sin lenguaje promocional. Debe permitir entender en segundos qué puesto es, misión principal, responsabilidades/requisitos realmente determinantes y cualquier condición relevante disponible; no repetir información secundaria ni inventar datos.
