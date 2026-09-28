@@ -29,6 +29,21 @@ Este fichero centraliza los incrementos pendientes del producto para no perder i
 - [ ] Añadir un `Resumen nuclear IA` de cada oferta: muy breve, factual, directo y sin lenguaje promocional. Debe permitir entender en segundos qué puesto es, misión principal, responsabilidades/requisitos realmente determinantes y cualquier condición relevante disponible; no repetir información secundaria ni inventar datos.
 - [ ] Mostrar el `Resumen nuclear IA` antes de la descripción original completa para acelerar la revisión humana.
 
+#### UX de revisión masiva — prioridad
+
+- [ ] Filtros avanzados compactos con el mismo patrón visual que `Aplicar aprendizaje`: botón/desplegable con checkboxes y multiselección.
+- [ ] `Ubicación`: desplegable multiselección basado en las ubicaciones disponibles.
+- [ ] `Tipo de trabajo`: desplegable multiselección (`Presencial`, `Híbrido`, `Remoto`, `Sin especificar`).
+- [ ] `Sueldo`: desplegable multiselección por rangos excluyentes: `Todos`, `Sin sueldo especificado`, `<20k €`, `20–40k €`, `40–60k €`, `60–80k €`, `80–100k €`, `100–150k €`, `150–200k €`, `200–250k €`, `≥250k €`.
+- [ ] Los filtros de ubicación, tipo y sueldo deben poder combinarse entre sí y con Vista/Encaje IA.
+- [ ] El botón de cada filtro debe indicar de forma compacta las selecciones activas o su número; `Todos` debe limpiar las selecciones particulares del filtro.
+- [ ] Paginación después de aplicar todos los filtros: 10 ofertas por página por defecto.
+- [ ] Mostrar `Mostrando X–Y de N ofertas` y navegación por páginas con número de página y total de páginas.
+- [ ] Añadir selector de tamaño de página: `10 / 20 / 50 / 100` ofertas.
+- [ ] Al cambiar cualquier filtro, volver automáticamente a la página 1.
+- [ ] `Aplicar aprendizaje`: sustituir el estado genérico `Reevaluación en cola…`/`IA reevaluando…` por progreso cuantificable cuando el backend disponga de datos: porcentaje y contador (`43% · 86/200`), preferentemente con barra visual de progreso.
+- [ ] Al finalizar aprendizaje, mostrar resumen (`Completado · X eliminadas · Y revisadas`) y retirar automáticamente el mensaje tras un tiempo breve.
+
 ### 3. Búsquedas
 
 - [ ] Crear pantalla `Búsquedas` para visualizar y administrar todas las búsquedas automáticas del Job Radar.
