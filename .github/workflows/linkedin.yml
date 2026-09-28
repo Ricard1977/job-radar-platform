@@ -57,19 +57,36 @@ jobs:
         if: always() && steps.schedule_guard.outputs.run == 'true'
         shell: bash
         run: |
+          set -e
           if [ -f data/job_radar.db ]; then
-            # Preserve the database produced by this run before synchronising
-            # with main. This avoids non-fast-forward failures when another
-            # workflow or frontend commit reaches main while extraction runs.
             cp data/job_radar.db /tmp/job_radar.db
             git config user.name "job-radar-bot"
             git config user.email "job-radar-bot@users.noreply.github.com"
-            git fetch origin main
-            git reset --hard origin/main
-            cp /tmp/job_radar.db data/job_radar.db
-            git add data/job_radar.db
-            if ! git diff --cached --quiet; then
+
+            # main can change while the 4+ minute extraction is running.
+            # Retry from the newest main while always restoring this run's DB.
+            for attempt in 1 2 3 4 5; do
+              echo "Persist attempt $attempt/5"
+              git fetch origin main
+              git reset --hard origin/main
+              cp /tmp/job_radar.db data/job_radar.db
+              git add data/job_radar.db
+
+              if git diff --cached --quiet; then
+                echo "Operational database already persisted."
+                exit 0
+              fi
+
               git commit -m "Update operational Job Radar database"
-              git push origin HEAD:main
-            fi
+              if git push origin HEAD:main; then
+                echo "Operational database persisted successfully."
+                exit 0
+              fi
+
+              echo "main changed during push; retrying on latest main..."
+              sleep $((attempt * 2))
+            done
+
+            echo "Could not persist operational database after 5 attempts."
+            exit 1
           fi
