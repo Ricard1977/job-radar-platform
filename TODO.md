@@ -19,6 +19,10 @@ Este fichero centraliza los incrementos pendientes del producto para no perder i
 
 - [ ] Convertir la pantalla actual de revisión de ofertas en la sección `Oportunidades` del menú principal.
 - [ ] Mantener en esta pantalla la bandeja de entrada, valoración humana, estado de aplicación, encaje IA, filtros avanzados y `Aplicar aprendizaje`.
+- [ ] Preservar y mostrar la estructura original de la descripción de la oferta siempre que la fuente la proporcione: párrafos, encabezados, listas y bullets. Evitar presentar toda la descripción como un único bloque de texto plano.
+- [ ] Cuando la fuente llegue sin estructura HTML utilizable, reconstruir una presentación legible de forma conservadora (párrafos/listas) sin alterar el contenido de la oferta.
+- [ ] Añadir un `Resumen nuclear IA` de cada oferta: muy breve, factual, directo y sin lenguaje promocional. Debe permitir entender en segundos qué puesto es, misión principal, responsabilidades/requisitos realmente determinantes y cualquier condición relevante disponible; no repetir información secundaria ni inventar datos.
+- [ ] Mostrar el `Resumen nuclear IA` antes de la descripción original completa para acelerar la revisión humana.
 
 ### 3. Búsquedas
 
