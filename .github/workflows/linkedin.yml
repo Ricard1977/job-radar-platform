@@ -3,8 +3,6 @@ name: LinkedIn Job Radar
 on:
   workflow_dispatch:
   schedule:
-    # GitHub cron uses UTC. Two entries keep the run at 06:00 Europe/Madrid
-    # across CET/CEST; the job-level timezone guard below allows only local 06:00.
     - cron: "0 4 * * *"
     - cron: "0 5 * * *"
 
@@ -53,6 +51,13 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
         run: python engines/linkedin/run.py
 
+      - name: Sync results to Supabase
+        if: steps.schedule_guard.outputs.run == 'true'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: python db/migrate_sqlite_to_supabase.py
+
       - name: Persist operational database
         if: always() && steps.schedule_guard.outputs.run == 'true'
         shell: bash
@@ -62,31 +67,24 @@ jobs:
             cp data/job_radar.db /tmp/job_radar.db
             git config user.name "job-radar-bot"
             git config user.email "job-radar-bot@users.noreply.github.com"
-
-            # main can change while the 4+ minute extraction is running.
-            # Retry from the newest main while always restoring this run's DB.
             for attempt in 1 2 3 4 5; do
               echo "Persist attempt $attempt/5"
               git fetch origin main
               git reset --hard origin/main
               cp /tmp/job_radar.db data/job_radar.db
               git add data/job_radar.db
-
               if git diff --cached --quiet; then
                 echo "Operational database already persisted."
                 exit 0
               fi
-
               git commit -m "Update operational Job Radar database"
               if git push origin HEAD:main; then
                 echo "Operational database persisted successfully."
                 exit 0
               fi
-
               echo "main changed during push; retrying on latest main..."
               sleep $((attempt * 2))
             done
-
             echo "Could not persist operational database after 5 attempts."
             exit 1
           fi
