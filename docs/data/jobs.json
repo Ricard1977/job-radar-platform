@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T11:50:55.099474+00:00",
+  "generated_at": "2026-09-29T12:07:33.251731+00:00",
   "jobs": [
     {
       "id": "JR-000622",
@@ -1059,6 +1059,74 @@
         "Gestión de proyectos": 14.0,
         "Entorno técnico": 12.0,
         "Liderazgo": 14.0,
+        "Sector": 8.0,
+        "Seniority": 18.0
+      }
+    },
+    {
+      "id": "JR-000465",
+      "title": "COORDINADOR/A DE REGULACIÓ I DEMANDA D’ACCÉS A XARXA",
+      "company": "Enginyers Industrials de Catalunya",
+      "logo_url": "https://media.licdn.com/dms/image/v2/D4D0BAQFiM-oRM8Gnzw/company-logo_100_100/company-logo_100_100/0/1705582228016/enginyersindustrials_logo?e=2147483647&v=beta&t=qgmyzdNPDE9VKMlnBRtJb9cqPLEaYnJ-RSAdP9EF0AQ",
+      "location": "Greater Granollers Metropolitan Area",
+      "workplace_type": null,
+      "salary": null,
+      "first_seen_at": "2026-09-29T04:08:00.641749+00:00",
+      "source": "LinkedIn",
+      "url": "https://es.linkedin.com/jobs/view/coordinador-a-de-regulaci%C3%B3-i-demanda-d%E2%80%99acc%C3%A9s-a-xarxa-at-enginyers-industrials-de-catalunya-4471396371?position=6&pageNum=12&refId=RCorWa7kSKx1TknaF1djmQ%3D%3D&trackingId=FfV5uvXH7Hg4vvxK0Sse1g%3D%3D",
+      "description": "Busques un nou repte en el sector energètic i vols tenir un impacte directe en l’evolució de la xarxa elèctrica? Grup energètic català amb més de 125 anys d’història, cerca un/a Coordinador/a de Regulació i Demanda d’Accés a Xarxa . Si tens experiència en distribució elèctrica, regulació del sector i coordinació d’equips, aquesta oportunitat et pot interessar. Quina serà la teva missió? Seràs la persona responsable de liderar la gestió de les sol·licituds d’accés i connexió a la xarxa, vetllant pel compliment normatiu i anticipant l’impacte dels canvis regulatoris en una empresa compromesa amb la innovació, la digitalització i la transició energètica. Principals responsabilitats ✅ Garantir la correcta gestió de les sol·licituds d’accés i connexió a la xarxa elèctrica. ✅ Fer seguiment de la normativa del sector (BOE, DOGC, CNMC, Reials Decrets i Ordres Ministerials). ✅ Mantenir l’organització actualitzada davant dels canvis regulatoris. ✅ Analitzar l’impacte de noves normatives i coordinar les adaptacions necessàries amb les diferents àrees. ✅ Relacionar-se amb promotors, ajuntaments i altres agents del sector. ✅ Coordinar i desenvolupar l’equip d’Accés a Xarxa i ATC, amb previsió d’assumir també la gestió d’un equip d’Atenció al Client. Què busquem? 🔹 Grau en Enginyeria Elèctrica, Enginyeria Industrial o titulació equivalent. 🔹 Experiència en xarxes de distribució elèctrica i estudis d’accés i connexió. 🔹 Coneixement de disseny i planificació de xarxes de distribució. 🔹 Capacitat d’interpretar i aplicar normativa reguladora del sector elèctric. 🔹 Experiència en coordinació d’equips tècnics o projectes transversals. Valorarem especialment: ➕ Experiència en projectes d’adaptació normativa. ➕ Formació específica en regulació del sector energètic. Què t’oferim? 🌱 Incorporació a una companyia referent en el sector energètic català. ⏰ Jornada completa amb horari intensiu els divendres i tres mesos d’horari intensiu a l’estiu. 🍽️ Ticket restaurant de 15 €/dia. 🏥 Assegurança mèdica amb possibilitat d’incloure familiars. 🛡️ Assegurança d’accidents i vida. 👨 👩 👧 👦 Ajudes familiars i educatives a través de la Fundació. Si vols liderar un àmbit clau per al desenvolupament de la xarxa elèctrica i formar part d’una empresa compromesa amb la sostenibilitat i el futur energètic, esperem la teva candidatura!",
+      "score": 68.0,
+      "decision": "INTERESTING",
+      "reason": "La oferta se alinea bien con el perfil senior de gestión e ingeniería industrial, destacando en la coordinación de equipos y proyectos transversales dentro de infraestructuras energéticas, aunque requiere especialización específica en regulación eléctrica y distribución que el candidato deberá complementar.",
+      "spanish_summary": "",
+      "strengths": [
+        "Experiencia sólida en gestión de proyectos de ingeniería y liderazgo de equipos multidisciplinares.",
+        "Capacidad probada de interlocución con diversos agentes y stakeholders del sector industrial.",
+        "Formación y trayectoria en ingeniería industrial que facilita la transferencia al sector eléctrico."
+      ],
+      "gaps": [
+        "Falta de evidencia directa en la gestión específica de marcos regulatorios de distribución eléctrica (CNMC, BOE, DOGC).",
+        "El núcleo técnico de la oferta se centra en redes eléctricas de distribución y acceso a red, un subdominio diferente a la automatización industrial pura del candidato."
+      ],
+      "barriers": [],
+      "dimensions": {
+        "Gestión de proyectos": 14.0,
+        "Entorno técnico": 12.0,
+        "Liderazgo": 12.0,
+        "Sector": 8.0,
+        "Seniority": 18.0
+      }
+    },
+    {
+      "id": "JR-000450",
+      "title": "Especialista Lean Construction (Last Planner System)",
+      "company": "BrainRPO",
+      "logo_url": "https://media.licdn.com/dms/image/v2/C4D0BAQH03KdavBY5RQ/company-logo_100_100/company-logo_100_100/0/1673432155537?e=2147483647&v=beta&t=Yo2YWDRBOXJhjf1otxYknItgXXcv170ubAvRZj4WxmM",
+      "location": "Barcelona, Catalonia, Spain",
+      "workplace_type": null,
+      "salary": "3-5",
+      "first_seen_at": "2026-09-29T04:07:39.835998+00:00",
+      "source": "LinkedIn",
+      "url": "https://es.linkedin.com/jobs/view/especialista-lean-construction-last-planner-system-at-brainrpo-4472736410?position=9&pageNum=7&refId=ohmaiSccxU%2FCuP5jAwqJLQ%3D%3D&trackingId=%2FqCUYK3Zh7Vx%2BYhk8NcbyQ%3D%3D",
+      "description": "Especialista Lean Construction Compañía especializada en Arquitectura Técnica, Project Management y Lean Construction busca incorporar un/a profesional que quiera combinar el seguimiento y gestión del día a día de los proyectos con la aplicación de metodologías Lean de planificación y mejora continua en proyectos de edificación de gran envergadura en Barcelona y Tarragona. Buscamos un perfil con experiencia en obra y conocimientos de Lean Construction , que quiera combinar el seguimiento y gestión del día a día de los proyectos con la aplicación de metodologías de planificación y mejora continua. Es una posición con un alto grado de autonomía, por lo que buscamos una persona proactiva, organizada y con iniciativa, capaz de relacionarse con equipos de obra, subcontratas e industriales y de impulsar mejoras en la planificación y ejecución de los proyectos. Sobre la posición: Participar en la implantación y seguimiento del sistema Last Planner System (LPS) en obra. Facilitar reuniones de planificación semanal con equipos de obra, industriales y subcontratas. Realizar el seguimiento de la planificación, compromisos y cumplimiento de objetivos. Identificar restricciones y anticiparse a posibles desviaciones que puedan afectar al desarrollo de los trabajos. Analizar los flujos de trabajo e identificar oportunidades de mejora. Aplicar principios de Lean Construction y mejora continua en el día a día de los proyectos. Colaborar con los equipos de obra en la coordinación y seguimiento de los trabajos. Elaborar informes de seguimiento y evolución de la planificación. Participar en otras tareas vinculadas a la gestión y seguimiento de obra, en función de las necesidades del proyecto. Qué buscamos: Formación en Arquitectura Técnica, Ingeniería de la Edificación, Ingeniería Civil o similar. Experiencia de aproximadamente 3-5 años en el sector de la construcción , preferiblemente en posiciones vinculadas a obra, producción, planificación o gestión de proyectos. Conocimientos o experiencia práctica en Lean Construction y/o Last Planner System . Experiencia en entorno de obra y capacidad para interactuar con diferentes agentes: industriales, subcontratas, dirección facultativa y equipos de producción. Perfil autónomo, organizado y con iniciativa, capaz de detectar problemas y proponer soluciones. Capacidad de comunicación y facilidad para dinamizar reuniones y coordinar diferentes interlocutores. Se valorará experiencia específica en planificación de obra y seguimiento de indicadores como PPC. Qué ofrece la compañía: Contrato indefinido y estabilidad profesional. Participación en proyectos de edificación de gran envergadura en Barcelona y Tarragona. Posibilidad de trabajar de forma transversal entre gestión de obra y Lean Construction . Desarrollo profesional en una compañía especializada en Lean Construction y Project Management.",
+      "score": 68.0,
+      "decision": "INTERESTING",
+      "reason": "La oferta se centra en gestión de proyectos de edificación y metodología Lean Construction (Last Planner System), un campo donde el candidato aporta una sólida experiencia en gestión y liderazgo, aunque su perfil está más orientado a automatización industrial e infraestructuras críticas que a edificación pura.",
+      "spanish_summary": "",
+      "strengths": [
+        "Experiencia sólida en gestión y dirección de proyectos complejos",
+        "Alta capacidad de liderazgo, coordinación de equipos y gestión de stakeholders",
+        "Ubicación compatible en Barcelona"
+      ],
+      "gaps": [
+        "El enfoque específico de la oferta es en edificación y construcción (Lean Construction / Last Planner System), mientras que el fuerte del candidato es la automatización industrial y las infraestructuras críticas",
+        "La experiencia requerida es de 3-5 años, lo cual está por debajo de los 20+ años del candidato, pudiendo generar un desajuste de senioridad"
+      ],
+      "barriers": [],
+      "dimensions": {
+        "Gestión de proyectos": 15.0,
+        "Entorno técnico": 10.0,
+        "Liderazgo": 12.0,
         "Sector": 8.0,
         "Seniority": 18.0
       }
