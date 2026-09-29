@@ -1,6 +1,8 @@
 name: Evaluate Jobs with Gemini
 
 on:
+  schedule:
+    - cron: "*/15 * * * *"
   workflow_dispatch:
     inputs:
       limit:
@@ -36,7 +38,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           JOB_RADAR_AI_MODEL: gemini-3.5-flash-lite
-          JOB_RADAR_AI_LIMIT: ${{ inputs.limit }}
+          JOB_RADAR_AI_LIMIT: ${{ inputs.limit || '100' }}
           PYTHONPATH: ${{ github.workspace }}
         run: python ai/evaluate_jobs.py
 
