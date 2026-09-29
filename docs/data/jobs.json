@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T16:29:06.186494+00:00",
+  "generated_at": "2026-09-29T16:44:19.518232+00:00",
   "jobs": [
     {
       "id": "JR-000622",
@@ -6333,40 +6333,6 @@
         "Gestión de proyectos": 10.0,
         "Entorno técnico": 5.0,
         "Liderazgo": 10.0,
-        "Sector": 5.0,
-        "Seniority": 15.0
-      }
-    },
-    {
-      "id": "JR-000332",
-      "title": "Senior IT Analyst",
-      "company": "EDGE",
-      "logo_url": "https://media.licdn.com/dms/image/v2/D4D0BAQH9rxSS_jPrkg/company-logo_100_100/B4DZ2XNqzcHoAQ-/0/1776358436821/edgegroup_logo?e=2147483647&v=beta&t=vWwqcTRpl7i4fug3LspuvQ7uvm_TJMx2PAKl_AamZKk",
-      "location": "Abu Dhabi, Abu Dhabi Emirate, United Arab Emirates",
-      "workplace_type": null,
-      "salary": null,
-      "first_seen_at": "2026-09-28T07:50:22.388632+00:00",
-      "source": "LinkedIn",
-      "url": "https://ae.linkedin.com/jobs/view/senior-it-analyst-at-edge-4471321620?position=2&pageNum=5&refId=i3WCRxAQRRAFVZrZV8KKqA%3D%3D&trackingId=70E%2BxMy98b2Mwz9%2BZRYmrw%3D%3D",
-      "description": "CANDIDATE PRIVACY & EQUAL OPPORTUNITY STATEMENT Major Duties And Responsibilities Ensure the smooth operation of applications and functional area computers to ensure all computer systems are consistently available and in compliance with applicable standards. Coordinate the installation, configuration and maintenance of the organisation’s applications and work stations. Direct diagnostic investigations of program errors and direct or recommend solutions or methodologies for resolution. Manage communication with all areas of the enterprise that impacts the scope, budget, risk, and resources of the work effort being managed. Correct program errors using methods such as modifying programs or altering the sequence of program steps. Analyse, review and rewrite programs to increase operating efficiency or to adapt programs to new requirements. Prepare detailed workflow charts to illustrate the sequence of steps that programs must follow; describe input, output and logical operations involved. Manage the administration, maintenance and upgrades of the organisation’s applications. Analyse and recommend the use of new applications and services to senior management. Conduct and validate the physical inventory of IT equipment and software. Provide instructions and training to staff when necessary. Assist with the enforcement of all IT directives within the company. Ensure all IT property is maintained in a serviceable condition, routinely inventoried and safeguarded. Supervise, monitor and train IT Analyst(s), Applications on a variety of IT tasks. Maintain the confidentiality and security of all company information. Support other members of the IT section in fulfilling their roles. Ensure compliance with all safety, housekeeping and environmental directives. Minimum Qualifications Bachelor degree in computer science, information systems or a related discipline required; Master degree preferred, or Equivalent years of Experiences in same field A minimum of five to six years of experience in an IT Applications role is required. A minimum of one year of experience in a supervisory position is required. Certifications in Cisco Certified Network Professions (CCNP), Cisco Certified Design Professions (CCDP), Cisco Certified Internetwork Expert (CCIE) and Cisco Certified Design Associate (CCDA) are an advantage. The ability to communicate effectively in English, both in writing and verbally is required. Have, or be able to obtain a valid UAE driver’s license.",
-      "score": 45.0,
-      "decision": "LOW_INTEREST",
-      "reason": "El rol se centra en el soporte operativo de aplicaciones y sistemas informáticos puros (IT) a nivel de analista, lo cual está por debajo del perfil de gestión y automatización industrial (OT/IT) del candidato.",
-      "spanish_summary": "",
-      "strengths": [
-        "Experiencia general en liderazgo y supervisión de equipos",
-        "Capacidad de gestión de proyectos y recursos dentro del alcance técnico"
-      ],
-      "gaps": [
-        "La posición es de carácter operativo y analítico de IT, muy alejada de la automatización industrial (PLC, SCADA, DCS) y gestión de infraestructuras críticas del candidato",
-        "Requiere un título específico en informática o sistemas que no se detalla en el perfil",
-        "Ubicación en Abu Dhabi sin confirmación de movilidad o interés internacional"
-      ],
-      "barriers": [],
-      "dimensions": {
-        "Gestión de proyectos": 10.0,
-        "Entorno técnico": 5.0,
-        "Liderazgo": 5.0,
         "Sector": 5.0,
         "Seniority": 15.0
       }
