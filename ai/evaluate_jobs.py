@@ -1,20 +1,26 @@
-"""MVP autonomous evaluator: SQLite jobs -> Gemini -> ai_evaluations."""
-import json, os, sys, time, random, urllib.error, urllib.parse, urllib.request
+"""Asynchronous Job Radar evaluator: persistent Work Orders -> Gemini -> ai_evaluations."""
+import json, os, sys, time, random, re, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 import yaml
 ROOT=Path(__file__).resolve().parents[1]; sys.path.insert(0,str(ROOT))
 from db.database import DB_PATH, connect
+from ai.work_orders import create_evaluation_order, recover_stale_processing, claim_next, mark_completed, mark_retry, mark_failed
 PROFILE_PATH=ROOT/'config'/'candidate_profile_v0.yaml'; CRITERIA_PATH=ROOT/'config'/'evaluation_criteria_v0.yaml'
 MODEL=os.getenv('JOB_RADAR_AI_MODEL','gemini-3.5-flash-lite'); PROFILE_VERSION='0'; CRITERIA_VERSION='0'
 EVALUATOR_VERSION=f'gemini:{MODEL}:profile-{PROFILE_VERSION}_criteria-{CRITERIA_VERSION}:candidate-es-v2'
 BATCH_LIMIT=int(os.getenv('JOB_RADAR_AI_LIMIT','25'))
-MAX_RETRIES=int(os.getenv('JOB_RADAR_AI_MAX_RETRIES','6'))
+MAX_RETRIES=int(os.getenv('JOB_RADAR_AI_MAX_RETRIES','2'))
 BASE_BACKOFF=float(os.getenv('JOB_RADAR_AI_BASE_BACKOFF','2'))
 INTER_JOB_DELAY=float(os.getenv('JOB_RADAR_AI_INTER_JOB_DELAY','1.0'))
+QUEUE_RETRY_DELAY=int(os.getenv('JOB_RADAR_AI_QUEUE_RETRY_DELAY','300'))
+MAX_ITEM_ATTEMPTS=int(os.getenv('JOB_RADAR_AI_MAX_ITEM_ATTEMPTS','8'))
 TRANSIENT_HTTP={429,500,502,503,504}
 SCORE_KEYS=['score','responsibility_and_seniority','project_program_delivery','engineering_technical_environment','leadership_and_stakeholders','sector_domain_transferability','critical_infrastructure_availability']
 LIST_KEYS=['strongest_matches','gaps_or_risks','hard_barriers','evidence_from_job']; REQUIRED=SCORE_KEYS+['decision','short_reason']+LIST_KEYS
+class GeminiHTTPError(RuntimeError):
+ def __init__(self,status,message):
+  super().__init__(message); self.status=status
 def now(): return datetime.now(timezone.utc).isoformat()
 def load_yaml(path): return yaml.safe_load(path.read_text(encoding='utf-8'))
 def compact_job(row): return {'public_id':row['public_id'],'title':row['title'],'company':row['company'],'location':row['location'],'workplace_type':row['workplace_type'],'salary_text':row['salary_text'],'description':row['description']}
@@ -51,32 +57,57 @@ def evaluate(api_key,profile,criteria,row):
    with urllib.request.urlopen(req,timeout=90) as resp:result=json.loads(resp.read().decode())
    break
   except urllib.error.HTTPError as exc:
-   payload=exc.read().decode(errors='replace')[:800];last_error=RuntimeError(f"Gemini HTTP {exc.code}: {payload}")
+   payload=exc.read().decode(errors='replace')[:800];last_error=GeminiHTTPError(exc.code,f"Gemini HTTP {exc.code}: {payload}")
    if exc.code not in TRANSIENT_HTTP or attempt>=MAX_RETRIES:raise last_error from exc
-   delay=min(60,BASE_BACKOFF*(2**attempt))+random.uniform(0,1.5)
-   print(f"Transient Gemini HTTP {exc.code} for {row['public_id']}; retry {attempt+1}/{MAX_RETRIES} in {delay:.1f}s",file=sys.stderr,flush=True);time.sleep(delay)
+   delay=min(20,BASE_BACKOFF*(2**attempt))+random.uniform(0,1.5)
+   print(f"Transient Gemini HTTP {exc.code} for {row['public_id']}; local retry {attempt+1}/{MAX_RETRIES} in {delay:.1f}s",file=sys.stderr,flush=True);time.sleep(delay)
   except (urllib.error.URLError,TimeoutError) as exc:
    last_error=RuntimeError(f"Gemini network error: {exc}")
    if attempt>=MAX_RETRIES:raise last_error from exc
-   delay=min(60,BASE_BACKOFF*(2**attempt))+random.uniform(0,1.5);time.sleep(delay)
+   delay=min(20,BASE_BACKOFF*(2**attempt))+random.uniform(0,1.5);time.sleep(delay)
  else:raise last_error or RuntimeError('Gemini request failed')
  candidates=result.get('candidates') or []
  if not candidates:raise RuntimeError('Gemini returned no candidate')
  text=''.join(p.get('text','') for p in candidates[0].get('content',{}).get('parts',[])).strip();return validate(extract_json(text))
+def load_job(job_id):
+ with connect(DB_PATH) as conn:
+  return conn.execute("SELECT j.*,c.name company FROM jobs j LEFT JOIN companies c ON c.id=j.company_id WHERE j.id=?",(job_id,)).fetchone()
+def store_evaluation(row,ev):
+ ts=now();detail={'short_reason':ev['short_reason'],'evidence_from_job':ev['evidence_from_job'],'profile_version':PROFILE_VERSION,'criteria_version':CRITERIA_VERSION,'provider':'google-gemini','api_model':MODEL}
+ with connect(DB_PATH) as conn:
+  existing=conn.execute("SELECT id FROM ai_evaluations WHERE job_id=? AND model_version=?",(row['id'],EVALUATOR_VERSION)).fetchone()
+  if existing:return
+  conn.execute('''INSERT INTO ai_evaluations(job_id,evaluated_at,model_version,decision,score,profile_match,technical_match,management_match,sector_match,seniority_match,strengths,weaknesses,reasoning,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',(row['id'],ts,EVALUATOR_VERSION,ev['decision'],ev['score'],ev['project_program_delivery'],ev['engineering_technical_environment'],ev['leadership_and_stakeholders'],ev['sector_domain_transferability'],ev['responsibility_and_seniority'],json.dumps(ev['strongest_matches'],ensure_ascii=False),json.dumps({'gaps_or_risks':ev['gaps_or_risks'],'hard_barriers':ev['hard_barriers'],'critical_infrastructure_availability':ev['critical_infrastructure_availability']},ensure_ascii=False),json.dumps(detail,ensure_ascii=False),ts))
 def main():
  api_key=os.getenv('GEMINI_API_KEY')
  if not api_key:raise RuntimeError('GEMINI_API_KEY is not configured')
  profile=load_yaml(PROFILE_PATH);criteria=load_yaml(CRITERIA_PATH)
- with connect(DB_PATH) as conn:rows=conn.execute('''SELECT j.*,c.name company FROM jobs j LEFT JOIN companies c ON c.id=j.company_id WHERE NOT EXISTS (SELECT 1 FROM ai_evaluations a WHERE a.job_id=j.id AND a.model_version=?) ORDER BY j.id DESC LIMIT ?''',(EVALUATOR_VERSION,BATCH_LIMIT)).fetchall()
- results=[];errors=0
- for i,row in enumerate(rows,1):
+ recovered=recover_stale_processing(EVALUATOR_VERSION)
+ order=create_evaluation_order(EVALUATOR_VERSION,BATCH_LIMIT)
+ print(f"WORK_ORDER created={order or 'none'} recovered_stale={recovered}",flush=True)
+ processed=completed=retried=failed=0
+ while processed<BATCH_LIMIT:
+  item=claim_next(EVALUATOR_VERSION)
+  if not item:break
+  processed+=1; row=load_job(item['job_id'])
+  if not row:
+   mark_failed(item['id'],'Job no longer exists');failed+=1;continue
   try:
-   ev=evaluate(api_key,profile,criteria,row);ts=now();detail={'short_reason':ev['short_reason'],'evidence_from_job':ev['evidence_from_job'],'profile_version':PROFILE_VERSION,'criteria_version':CRITERIA_VERSION,'provider':'google-gemini','api_model':MODEL}
-   with connect(DB_PATH) as conn:conn.execute('''INSERT INTO ai_evaluations(job_id,evaluated_at,model_version,decision,score,profile_match,technical_match,management_match,sector_match,seniority_match,strengths,weaknesses,reasoning,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',(row['id'],ts,EVALUATOR_VERSION,ev['decision'],ev['score'],ev['project_program_delivery'],ev['engineering_technical_environment'],ev['leadership_and_stakeholders'],ev['sector_domain_transferability'],ev['responsibility_and_seniority'],json.dumps(ev['strongest_matches'],ensure_ascii=False),json.dumps({'gaps_or_risks':ev['gaps_or_risks'],'hard_barriers':ev['hard_barriers'],'critical_infrastructure_availability':ev['critical_infrastructure_availability']},ensure_ascii=False),json.dumps(detail,ensure_ascii=False),ts))
-   results.append({'job':row['public_id'],'score':ev['score'],'decision':ev['decision']});print(f"PROGRESS {i}/{len(rows)} evaluated={i-errors} errors={errors}",flush=True)
-  except Exception as exc:errors+=1;results.append({'job':row['public_id'],'error':str(exc)});print(f"PROGRESS {i}/{len(rows)} evaluated={i-errors} errors={errors}",flush=True)
+   ev=evaluate(api_key,profile,criteria,row);store_evaluation(row,ev);mark_completed(item['id']);completed+=1
+  except GeminiHTTPError as exc:
+   if exc.status in TRANSIENT_HTTP and item['attempts']+1<MAX_ITEM_ATTEMPTS:
+    mark_retry(item['id'],exc,exc.status,QUEUE_RETRY_DELAY);retried+=1
+   else:
+    mark_failed(item['id'],exc,exc.status);failed+=1
+  except (urllib.error.URLError,TimeoutError,RuntimeError) as exc:
+   if item['attempts']+1<MAX_ITEM_ATTEMPTS:
+    mark_retry(item['id'],exc,None,QUEUE_RETRY_DELAY);retried+=1
+   else:
+    mark_failed(item['id'],exc);failed+=1
+  except Exception as exc:
+   mark_failed(item['id'],exc);failed+=1
+  print(f"QUEUE_PROGRESS processed={processed} completed={completed} retry_wait={retried} failed={failed}",flush=True)
   time.sleep(INTER_JOB_DELAY)
- print(json.dumps({'selected':len(rows),'evaluated':len(rows)-errors,'errors':errors,'results':results},ensure_ascii=False,indent=2))
- # Partial success is useful: persist successful evaluations and leave failed jobs unevaluated for a later retry.
- return 1 if errors and errors==len(rows) else 0
+ print(json.dumps({'work_order_created':order,'processed':processed,'completed':completed,'retry_wait':retried,'failed':failed},ensure_ascii=False,indent=2))
+ return 0
 if __name__=='__main__':raise SystemExit(main())
