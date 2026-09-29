@@ -9,6 +9,40 @@ CREATE TABLE IF NOT EXISTS job_sources (id INTEGER PRIMARY KEY AUTOINCREMENT,job
 CREATE TABLE IF NOT EXISTS ai_evaluations (id INTEGER PRIMARY KEY AUTOINCREMENT,job_id INTEGER NOT NULL REFERENCES jobs(id),evaluated_at TEXT NOT NULL,model_version TEXT,decision TEXT,score REAL,profile_match REAL,technical_match REAL,management_match REAL,sector_match REAL,seniority_match REAL,strengths TEXT,weaknesses TEXT,reasoning TEXT,created_at TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS applications (id INTEGER PRIMARY KEY AUTOINCREMENT,job_id INTEGER NOT NULL REFERENCES jobs(id),status TEXT NOT NULL,application_date TEXT,channel TEXT,contact_name TEXT,contact_role TEXT,next_action TEXT,next_action_date TEXT,notes TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL);
 
+-- Persistent asynchronous work queue. Work orders orchestrate processing without duplicating job payloads.
+CREATE TABLE IF NOT EXISTS work_orders (
+ id INTEGER PRIMARY KEY AUTOINCREMENT,
+ public_id TEXT NOT NULL UNIQUE,
+ work_type TEXT NOT NULL,
+ status TEXT NOT NULL DEFAULT 'PENDING' CHECK(status IN ('PENDING','PROCESSING','COMPLETED','COMPLETED_WITH_ERRORS','FAILED','CANCELLED')),
+ priority INTEGER NOT NULL DEFAULT 100,
+ model_version TEXT,
+ total_items INTEGER NOT NULL DEFAULT 0,
+ completed_items INTEGER NOT NULL DEFAULT 0,
+ retry_items INTEGER NOT NULL DEFAULT 0,
+ failed_items INTEGER NOT NULL DEFAULT 0,
+ created_at TEXT NOT NULL,
+ started_at TEXT,
+ finished_at TEXT,
+ updated_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS work_order_items (
+ id INTEGER PRIMARY KEY AUTOINCREMENT,
+ work_order_id INTEGER NOT NULL REFERENCES work_orders(id) ON DELETE CASCADE,
+ job_id INTEGER NOT NULL REFERENCES jobs(id),
+ status TEXT NOT NULL DEFAULT 'PENDING' CHECK(status IN ('PENDING','PROCESSING','RETRY_WAIT','COMPLETED','FAILED','CANCELLED')),
+ priority INTEGER NOT NULL DEFAULT 100,
+ attempts INTEGER NOT NULL DEFAULT 0,
+ last_http_status INTEGER,
+ last_error TEXT,
+ next_attempt_at TEXT,
+ started_at TEXT,
+ finished_at TEXT,
+ created_at TEXT NOT NULL,
+ updated_at TEXT NOT NULL,
+ UNIQUE(work_order_id,job_id)
+);
+
 -- Independent human judgement. Kept separate from applications deliberately:
 -- professional interest and the decision to apply are different signals.
 CREATE TABLE IF NOT EXISTS user_job_feedback (
@@ -25,5 +59,5 @@ CREATE TABLE IF NOT EXISTS user_job_feedback (
 );
 
 CREATE TABLE IF NOT EXISTS job_events (id INTEGER PRIMARY KEY AUTOINCREMENT,job_id INTEGER NOT NULL REFERENCES jobs(id),event_type TEXT NOT NULL,event_date TEXT NOT NULL,old_value TEXT,new_value TEXT,reason TEXT,actor TEXT,created_at TEXT NOT NULL);
-CREATE INDEX IF NOT EXISTS idx_jobs_status ON jobs(status);CREATE INDEX IF NOT EXISTS idx_jobs_company ON jobs(company_id);CREATE INDEX IF NOT EXISTS idx_job_sources_job ON job_sources(job_id);CREATE INDEX IF NOT EXISTS idx_job_sources_source ON job_sources(source_id,external_job_id);CREATE INDEX IF NOT EXISTS idx_runs_search ON runs(search_id,started_at);CREATE INDEX IF NOT EXISTS idx_ai_job ON ai_evaluations(job_id,evaluated_at);CREATE INDEX IF NOT EXISTS idx_applications_job ON applications(job_id);CREATE INDEX IF NOT EXISTS idx_feedback_job ON user_job_feedback(job_id);CREATE INDEX IF NOT EXISTS idx_feedback_applied ON user_job_feedback(applied);CREATE INDEX IF NOT EXISTS idx_events_job ON job_events(job_id,event_date);
+CREATE INDEX IF NOT EXISTS idx_jobs_status ON jobs(status);CREATE INDEX IF NOT EXISTS idx_jobs_company ON jobs(company_id);CREATE INDEX IF NOT EXISTS idx_job_sources_job ON job_sources(job_id);CREATE INDEX IF NOT EXISTS idx_job_sources_source ON job_sources(source_id,external_job_id);CREATE INDEX IF NOT EXISTS idx_runs_search ON runs(search_id,started_at);CREATE INDEX IF NOT EXISTS idx_ai_job ON ai_evaluations(job_id,evaluated_at);CREATE INDEX IF NOT EXISTS idx_applications_job ON applications(job_id);CREATE INDEX IF NOT EXISTS idx_work_orders_status ON work_orders(status,priority,created_at);CREATE INDEX IF NOT EXISTS idx_work_items_queue ON work_order_items(status,next_attempt_at,priority,id);CREATE INDEX IF NOT EXISTS idx_work_items_order ON work_order_items(work_order_id,status);CREATE INDEX IF NOT EXISTS idx_feedback_job ON user_job_feedback(job_id);CREATE INDEX IF NOT EXISTS idx_feedback_applied ON user_job_feedback(applied);CREATE INDEX IF NOT EXISTS idx_events_job ON job_events(job_id,event_date);
 INSERT OR IGNORE INTO sources(code,name,source_type,enabled) VALUES ('linkedin','LinkedIn','job_board',1);
