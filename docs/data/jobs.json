@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T12:46:10.032412+00:00",
+  "generated_at": "2026-09-29T13:11:49.632505+00:00",
   "jobs": [
     {
       "id": "JR-000622",
@@ -580,6 +580,40 @@
       "dimensions": {
         "Gestión de proyectos": 15.0,
         "Entorno técnico": 14.0,
+        "Liderazgo": 12.0,
+        "Sector": 8.0,
+        "Seniority": 18.0
+      }
+    },
+    {
+      "id": "JR-000441",
+      "title": "Jefe/a de obra de instalaciones",
+      "company": "GEINSTAL",
+      "logo_url": "https://media.licdn.com/dms/image/v2/C4E0BAQFxbMPsLAn7MQ/company-logo_100_100/company-logo_100_100/0/1631340325488?e=2147483647&v=beta&t=Q9aEisQynj4d_3Q6YDoluzIhsJJ7vkfzRDjZsH-tH74",
+      "location": "Sant Cugat del Vallès, Catalonia, Spain",
+      "workplace_type": null,
+      "salary": null,
+      "first_seen_at": "2026-09-29T04:07:28.545387+00:00",
+      "source": "LinkedIn",
+      "url": "https://es.linkedin.com/jobs/view/jefe-a-de-obra-de-instalaciones-at-geinstal-4470875497?position=9&pageNum=5&refId=ZkA%2BcKV4JD0tyZprIAN%2Beg%3D%3D&trackingId=KSrKlrYOgOnAmBIBoty8HQ%3D%3D",
+      "description": "¿Te gusta liderar obras de principio a fin? En Geinstal buscamos Jefe/a de Obra de instalaciones Si tienes experiencia coordinando instalaciones electromecánicas en edificios y quieres un proyecto estable donde crecer, esto te interesa. 🔧 Tu día a día ▸ Liderar y coordinar al equipo y a las subcontratas ▸ Planificar y controlar los plazos de cada fase ▸ Gestionar pedidos de materiales ▸ Visitar las obras cada semana y estar cerca de lo que pasa ▸ Ser el punto de contacto con clientes, proveedores y organismos oficiales 🎯 Qué buscamos ▸ Ingeniería Técnica Industrial o Grado en Ingeniería de la rama industrial ▸ Mínimo 3 años de experiencia en instalaciones de edificios: electricidad, BT, climatización, frío y calor, PCI, fontanería… ▸ Conocimientos técnicos sólidos en climatización y electricidad ▸ Capacidad para valorar económicamente los trabajos ▸ Manejo de programas de presupuestos y certificaciones de obra ▸ Carnet de conducir B ✨ Qué te ofrecemos ▸ Contrato indefinido ▸ Incorporación inmediata ▸ Salario competitivo, negociable según tu experiencia En Geinstal apostamos por la igualdad de oportunidades y la no discriminación. Esta oferta está abierta también a personas con discapacidad, conforme a la Ley General de Derechos de las Personas con Discapacidad y de su Inclusión Social.",
+      "score": 75.0,
+      "decision": "INTERESTING",
+      "reason": "La oferta de Jefe de Obra de instalaciones encaja bien con la experiencia senior del candidato en gestión de proyectos de ingeniería y sistemas en edificios, aunque está orientada a la ejecución de obra civil/electromecánica más tradicional.",
+      "spanish_summary": "",
+      "strengths": [
+        "Experiencia sólida en ingeniería técnica industrial y gestión de proyectos de instalaciones.",
+        "Capacidad probada en liderazgo de equipos, subcontratas y gestión de stakeholders.",
+        "Conocimientos en climatización, electricidad y sistemas técnicos aplicados a edificios."
+      ],
+      "gaps": [
+        "El rol se enfoca más en la ejecución tradicional de obras de edificación que en automatización industrial avanzada y IT/OT.",
+        "Falta de mención explícita a sistemas de control complejo o infraestructuras críticas en la descripción de la oferta."
+      ],
+      "barriers": [],
+      "dimensions": {
+        "Gestión de proyectos": 16.0,
+        "Entorno técnico": 15.0,
         "Liderazgo": 12.0,
         "Sector": 8.0,
         "Seniority": 18.0
@@ -6302,6 +6336,40 @@
         "Liderazgo": 10.0,
         "Sector": 5.0,
         "Seniority": 15.0
+      }
+    },
+    {
+      "id": "JR-000447",
+      "title": "Ingeniero/a de Proyectos (H/M)",
+      "company": "MIGSO-PCUBED",
+      "logo_url": "https://media.licdn.com/dms/image/v2/D4E0BAQG3Phf0LVamIQ/company-logo_100_100/B4EZrd09JwKUAU-/0/1764658238613/migso_pcubed_logo?e=2147483647&v=beta&t=WviYwDz0CH6SGxR3ypqxOdr_wGzzeZMsMNhlpgSJHMg",
+      "location": "Greater Barcelona Metropolitan Area",
+      "workplace_type": null,
+      "salary": null,
+      "first_seen_at": "2026-09-29T04:07:36.223756+00:00",
+      "source": "LinkedIn",
+      "url": "https://es.linkedin.com/jobs/view/ingeniero-a-de-proyectos-h-m-at-migso-pcubed-4470865478?position=6&pageNum=7&refId=ohmaiSccxU%2FCuP5jAwqJLQ%3D%3D&trackingId=sVJ%2FjpvEdeDBeW8JhiUwRw%3D%3D",
+      "description": null,
+      "score": 45.0,
+      "decision": "LOW_INTEREST",
+      "reason": "La oferta no contiene descripción del puesto, lo que impide evaluar el alcance real, las responsabilidades y la compatibilidad con el perfil senior del candidato.",
+      "spanish_summary": "",
+      "strengths": [
+        "Ubicacion geografica compatible (Barcelona)",
+        "Rol de ingenieria de proyectos alineado con las familias del candidato"
+      ],
+      "gaps": [
+        "Ausencia total de descripcion en la oferta",
+        "Imposible determinar el nivel de senioridad requerido",
+        "Falta de informacion sobre el entorno tecnico o sectorial"
+      ],
+      "barriers": [],
+      "dimensions": {
+        "Gestión de proyectos": 10.0,
+        "Entorno técnico": 5.0,
+        "Liderazgo": 5.0,
+        "Sector": 10.0,
+        "Seniority": 10.0
       }
     },
     {
