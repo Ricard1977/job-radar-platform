@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T13:44:53.274964+00:00",
+  "generated_at": "2026-09-29T14:00:30.165718+00:00",
   "jobs": [
     {
       "id": "JR-000622",
@@ -580,6 +580,39 @@
       "dimensions": {
         "Gestión de proyectos": 15.0,
         "Entorno técnico": 14.0,
+        "Liderazgo": 12.0,
+        "Sector": 8.0,
+        "Seniority": 18.0
+      }
+    },
+    {
+      "id": "JR-000426",
+      "title": "Project Manager MES & SCADA",
+      "company": "PrimeIT España",
+      "logo_url": "https://media.licdn.com/dms/image/v2/D4D0BAQFHKOWhVeLq1g/company-logo_100_100/B4DZfqRXJFGsAY-/0/1751982109741/primeit_espaa_logo?e=2147483647&v=beta&t=e8J7lFj9dD3SbRSnWsILfdPLu6JHeSrvYgu6yF0oBPw",
+      "location": "Barcelona, Catalonia, Spain",
+      "workplace_type": "ONSITE",
+      "salary": null,
+      "first_seen_at": "2026-09-29T04:07:05.244526+00:00",
+      "source": "LinkedIn",
+      "url": "https://es.linkedin.com/jobs/view/project-manager-mes-scada-at-primeit-espa%C3%B1a-4460318139?position=10&pageNum=0&refId=y4wC7FztYcvSuOjfxGZ1Uw%3D%3D&trackingId=FH7LP%2BCDxdEpZ6qBXi0ujw%3D%3D",
+      "description": "¿Estás preparadx para un cambio y explotar tus habilidades como nunca? 👉🏼 Sigue leyendo porque tenemos lo que buscas… 🛸 ¿Quiénes somos? 🛸 Somos una empresa internacional con más de 18 años de experiencia en consultoría e ingeniería informática. Con más de 2.500 Primers operando en 4 sectores principales en todo el mundo: IT, Telecomunicaciones, Energía e Infraestructuras Nos puedes encontrar en más de 50 ciudades en todo el mundo: ESPAÑA | PORTUGAL | FRANCIA | REINO UNIDO | ITALIA | SUIZA | POLONIA | BRASIL 🕵🏽 ¿Qué buscamos? 🕵🏽 +4 años de experiencia como Project Manager MES & SCADA , gestionando sistemas de control de planta en entornos industriales. Experiencia en entornos industriales , coordinando equipos de Producción e IT y resolviendo incidencias. Nivel fluido de español e inglés , con capacidad para coordinar equipos multidisciplinares y formar a usuarios. Conocimientos de sistemas MES, SCADA y protocolos de comunicación industrial , además de experiencia en mejoras, actualizaciones y documentación. ¡¡Y lo más importante de todo que realmente estés motivadx para un cambio!! 🚀 ¿Qué ofrecemos? 🚀 Podemos asegurarte que contamos con el mejor equipo de todo el sector . Desde el proceso de selección, tu incorporación y hasta nuestro desarrollo profesional te ofrecemos un acompañamiento y un seguimiento personalizado en todo momento. Y a todo esto súmale transparencia total en todos los pasos. Pinta bien, ¿verdad? 📝 Condiciones 📝 📍Barcelona 🧑🏽 Presencial 💵 +50k Tenemos la seguridad de que ya sabes qué es lo que muchas empresas te ofrecen y por supuesto estamos a la altura: Vas a contar con un plan de carrera , crecimiento, proyección y desarrollo profesional personalizado Tendrás acceso a formación continua para que puedas estar al día. Podrás participar en proyectos nacionales e internacionales con opción a movilidad. No todo va a ser trabajar, por eso disfrutar de la tarjeta restaurante y seguro médico nos parece esencial. ¡¡¡Teambuildings, afterworks y muchas más sorpresas!!!",
+      "score": 75.0,
+      "decision": "INTERESTING",
+      "reason": "La oferta pide +4 años como Project Manager MES & SCADA, lo cual está por debajo de la experiencia senior del candidato, pero su perfil en automatización industrial y gestión de proyectos encaja perfectamente con el rol en Barcelona.",
+      "spanish_summary": "",
+      "strengths": [
+        "Experiencia sólida en automatización industrial, MES y SCADA",
+        "Ubicación en Barcelona con modalidad presencial coincidente",
+        "Coordinación de equipos multidisciplinares y gestión de stakeholders"
+      ],
+      "gaps": [
+        "La oferta solicita más de 4 años de experiencia, mientras que el candidato aporta más de 20 años, lo que podría suponer un desajuste de nivel o expectativas salariales"
+      ],
+      "barriers": [],
+      "dimensions": {
+        "Gestión de proyectos": 15.0,
+        "Entorno técnico": 16.0,
         "Liderazgo": 12.0,
         "Sector": 8.0,
         "Seniority": 18.0
