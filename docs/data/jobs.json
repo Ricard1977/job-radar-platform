@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T19:19:58.873794+00:00",
+  "generated_at": "2026-09-29T19:40:43.625096+00:00",
   "jobs": [
     {
       "id": "JR-000622",
@@ -2452,6 +2452,41 @@
         "Liderazgo": 12.0,
         "Sector": 5.0,
         "Seniority": 18.0
+      }
+    },
+    {
+      "id": "JR-000276",
+      "title": "Project Delivery Director - Infrastructure",
+      "company": "Big Fish Consult",
+      "logo_url": "https://media.licdn.com/dms/image/v2/C560BAQGatR8pKD3w8A/company-logo_100_100/company-logo_100_100/0/1631389604011?e=2147483647&v=beta&t=pXbeEQ3BJryhswE3b08l-snyDr_8NlHbMaEGclAifNc",
+      "location": "Abu Dhabi Emirate, United Arab Emirates",
+      "workplace_type": null,
+      "salary": null,
+      "first_seen_at": "2026-09-28T06:45:16.132457+00:00",
+      "source": "LinkedIn",
+      "url": "https://ae.linkedin.com/jobs/view/project-delivery-director-infrastructure-at-big-fish-consult-4472482859?position=4&pageNum=5&refId=JkmlZJq0h%2BL5QY8KiFWSIw%3D%3D&trackingId=OKX0Gf7tbSz76Sx5KGG5Ug%3D%3D",
+      "description": "Project Delivery Director - Infrastructure Semi Government, Real Estate Developer, Abu Dhabi We are seeking an experienced Project Director - Infrastructure to lead the planning, design, procurement, and delivery of major infrastructure packages across master planned communities, mixed-use developments, and strategic urban projects. Key Responsibilities: Lead end-to-end delivery of infrastructure projects including roads, highways, utilities, drainage, public realm, and transportation networks. Manage multidisciplinary teams, consultants, contractors, and stakeholders to ensure successful project execution. Oversee project budgets, schedules, risk management, procurement strategies, and contract administration. Drive design coordination, value engineering initiatives, and compliance with local authority requirements. Ensure projects are delivered safely, on time, within budget, and to the highest quality standards. Provide strategic leadership and governance across multiple concurrent infrastructure programs. Key Requirements: Bachelor's degree in Civil Engineering or related discipline (Master's degree preferred). 15+ years of experience in infrastructure project delivery, with significant exposure to large-scale developments. Proven track record managing major infrastructure packages for developers, government entities, or leading consultancies. Strong experience in roads, utilities, transportation infrastructure, and master planned communities. Expertise in project governance, commercial management, stakeholder engagement, and risk mitigation. Current or Prior UAE experience is a must. Professional certifications such as PMP, RICS, or equivalent are advantageous.",
+      "score": 60.0,
+      "decision": "REVIEW",
+      "reason": "El rol ofrece un nivel de senioridad adecuado (Director), pero está muy enfocado en obra civil y urbanismo tradicional (carreteras, servicios públicos, master plans), alejándose del núcleo de automatización industrial, sistemas de control e IT/OT del candidato, además de requerir experiencia previa obligatoria en EAU.",
+      "spanish_summary": "",
+      "strengths": [
+        "Alta senioridad y liderazgo en gestión de grandes programas y proyectos complejos",
+        "Sólida experiencia en gestión de presupuestos, riesgos, contratos y equipos multidisciplinares"
+      ],
+      "gaps": [
+        "Enfoque principal en ingeniería civil y urbanismo (carreteras, drenaje, redes urbanas) frente al perfil industrial y de automatización del candidato",
+        "Requisito obligatorio de experiencia actual o previa en los Emiratos Árabes Unidos (UAE), la cual no consta en el perfil"
+      ],
+      "barriers": [
+        "Experiencia previa obligatoria en EAU solicitada por el empleador (no documentada en el perfil del candidato)"
+      ],
+      "dimensions": {
+        "Gestión de proyectos": 16.0,
+        "Entorno técnico": 8.0,
+        "Liderazgo": 14.0,
+        "Sector": 6.0,
+        "Seniority": 22.0
       }
     },
     {
@@ -14420,6 +14455,40 @@
         "Liderazgo": 10.0,
         "Sector": 0.0,
         "Seniority": 5.0
+      }
+    },
+    {
+      "id": "JR-000278",
+      "title": "Unit Head - Credit Control & Monitoring Unit.Injaz - CRM - Credit Control Unit.Risk Management",
+      "company": "Mashreq",
+      "logo_url": "https://media.licdn.com/dms/image/v2/D4D0BAQEbd1JVKGvYRQ/company-logo_100_100/B4DZ2GXaRTI4AQ-/0/1776075781302/mashreq_uae_logo?e=2147483647&v=beta&t=66O2WiWwMkvhaQrIhfgkBZI4YT_w1gtTjugtduU4zHc",
+      "location": "United Arab Emirates",
+      "workplace_type": null,
+      "salary": null,
+      "first_seen_at": "2026-09-28T06:45:21.119325+00:00",
+      "source": "LinkedIn",
+      "url": "https://ae.linkedin.com/jobs/view/unit-head-credit-control-monitoring-unit-injaz-crm-credit-control-unit-risk-management-at-mashreq-4472451261?position=8&pageNum=5&refId=JkmlZJq0h%2BL5QY8KiFWSIw%3D%3D&trackingId=GKxgqR16aaUqg3LJrH6xCg%3D%3D",
+      "description": "- Supervision and management of the Credit Control and Monitoring activities for the borrowing clientele of the Bank - Managing the credit control activities within the approved budget / resources - Ensure credit control team is well equipped to carry out their responsibilities - Continuous improvement of the existing processes and systems to achieve better controls, scalability and synergy - Managing a team of Credit Control Officers and Control Managers in performing all end-to-end activities pertaining to the credit control function. Managing a team of Credit Control Officers and Control Managers in performing all end-to-end activities pertaining to the credit control function.",
+      "score": 10.0,
+      "decision": "LOW_INTEREST",
+      "reason": "La oferta corresponde a la gestión de control y seguimiento de crédito en banca, un dominio completamente ajeno al perfil de ingeniería, automatización industrial e infraestructuras críticas del candidato.",
+      "spanish_summary": "",
+      "strengths": [
+        "Experiencia general en liderazgo y gestión de equipos"
+      ],
+      "gaps": [
+        "Dominio totalmente financiero y bancario (Credit Control & Monitoring)",
+        "Ausencia total de componente de ingeniería, sistemas OT/IT, automatización o gestión de proyectos técnicos"
+      ],
+      "barriers": [
+        "Role is clearly outside the candidate's professional domain and has no credible transferable management, engineering or technical-services component."
+      ],
+      "dimensions": {
+        "Gestión de proyectos": 0.0,
+        "Entorno técnico": 0.0,
+        "Liderazgo": 30.0,
+        "Sector": 0.0,
+        "Seniority": 10.0
       }
     },
     {
