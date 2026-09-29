@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T13:27:05.818400+00:00",
+  "generated_at": "2026-09-29T13:44:53.274964+00:00",
   "jobs": [
     {
       "id": "JR-000622",
@@ -9616,6 +9616,42 @@
         "Liderazgo": 10.0,
         "Sector": 5.0,
         "Seniority": 15.0
+      }
+    },
+    {
+      "id": "JR-000435",
+      "title": "Finance Project Manager - Deals & Partnerships",
+      "company": "Criteo",
+      "logo_url": "https://media.licdn.com/dms/image/v2/D4D0BAQFMB7iC1WROXQ/company-logo_100_100/company-logo_100_100/0/1726650227909/criteo_logo?e=2147483647&v=beta&t=e5c8SnoiF3zK2m3iDXqBWfDLttB8vcbt35RUYIAjavI",
+      "location": "Barcelona, Catalonia, Spain",
+      "workplace_type": "HYBRID",
+      "salary": null,
+      "first_seen_at": "2026-09-29T04:07:18.716128+00:00",
+      "source": "LinkedIn",
+      "url": "https://es.linkedin.com/jobs/view/finance-project-manager-deals-partnerships-at-criteo-4445903810?position=1&pageNum=5&refId=ZkA%2BcKV4JD0tyZprIAN%2Beg%3D%3D&trackingId=ZcE1v4NXDLgLnOwJVtIEiQ%3D%3D",
+      "description": "What You'll Do: New Business Finance Enablement (NBFE) sits within Criteo Finance and is responsible for making sure Finance can safely and efficiently support new products, non-standard commercial deals and strategic partnerships. NBFE's mission is to: Advise Product and Commercial teams on scalable, finance-sound structures that balance client needs, revenue growth and operational cost Ensure Finance readiness (processes, systems, data, controls, reporting, treasury/tax impacts) from Alpha/Beta through GA and scaling Drive standardization by turning recurring patterns into reusable, well-designed \"standards\" Clarify and improve governance, including finance review gates, DoA/approvals and KPIs for new business As NBFE Project Manager, you are one of the key faces of Finance for Product and Commercial teams on new business topics. This role is at the heart of Criteo's evolution towards a broader Commerce Media Platform and requires regular collaboration with Product, Commercial, Technology and Finance leaders. Your Missions Product / Deal / Partnership Enablement For each product, non-standard deal or partnership in your scope, you will: Represent Finance in cross-functional squads (Product, Sales, Deal Desk, Legal, IIT/R&D, Tax, Controlling, OTC, Treasury) from Ideation through Build and Run Advise and negotiate setups that reduce Finance enablement cost, increase scalability and control, while meeting commercial and client requirements Lead the Finance Viability assessment: Use Product materials as inputs Populate and maintain the internal Finance Viability Template across commercial model, billing, tax, accounting, reporting and treasury/payment topics Consolidate inputs from all impacted Finance teams Translate Finance requirements into clear, actionable asks for Product and IIT (tickets, user stories, acceptance criteria) and follow them through UAT to go-live Steer the product / deal / partnership through go-live and hypercare, tracking both: Financial outcomes Operational health (billing accuracy, incident rate, manual work, exception handling) Standardization and Re-use Beyond individual deals, you will help NBFE industrialize new business patterns: Identify recurring commercial and product patterns and where we can move from \"one-off\" to standard offers Design, together with Product and IIT, standard enablers (billing design, reporting logic, approval rules) that Product and Sales can re-use with minimal finance friction Contribute to the NBFE catalog of \"standards\" and knowledge base (playbooks, examples, do/don'ts) Governance, Processes and KPIs You will support and improve the governance of Finance in the new business lifecycle: Propose and refine governance for new business in your scope: Pre-approvals and Delegations of Authority (DoA) Fast-track vs. standard review flows RACI and SLAs between Finance, Product and Commercial Ensure processes are documented end-to-end, including Finance roles and controls Share input to Finance leadership on trends, risks and opportunities across your portfolio Stakeholder Management and Communication Act as a trusted counterpart for Product Managers, Commercial leaders and Finance stakeholders on all finance-related aspects of new products and deals Prepare and run Finance and cross-functional workshops (design decisions, risk/impact reviews, go/no-go meetings) Communicate clearly and regularly on status, risks, dependencies and decisions to: Your manager and finance leadership Finance teams impacted by the change (OTC Ops, Tax, Treasury, Controlling, FP&A, etc.) Product and Commercial stakeholders Who You Are: Experience and Background 5+ years of relevant experience in Finance, Consulting, Audit and/or Project/Program Management Strong Finance background, ideally with exposure to: Order-to-Cash processes (billing, collections, reporting) Revenue recognition and margin / cost allocation topics Tax and legal entity considerations Experience in AdTech or digital platforms is a strong plus Skills Solid project / program management skills, including: Planning, risk management, stakeholder alignment, RAID tracking Experience with Agile environments Strong business and systems acumen: Comfortable working functionally with ERP/billing, Salesforce and BI/reporting tools Able to translate business requirements into system and data implications Advanced analytical skills: able to understand complex commercial models, simulate financial impacts and challenge business cases Proven ability to: Drive a full end-to-end process view (from commercial agreement to invoicing, cash and reporting) Lead complex business model implementations across multiple teams and systems Coordinate transversally across Commercial, Product, Finance and Technology Communication and influencing / negotiation skills, including with senior stakeholders Comfortable preparing and presenting materials for Executive-level audiences Fluent in English (written and spoken); other languages are a plus We acknowledge that many candidates may not meet every single role requirement listed above. If your experience looks a little different from our requirements but you believe that you can still bring value to the role, we’d love to see your application! Who We Are: We’re Criteo, the Commerce Intelligence Platform. Criteo helps businesses turn shopper signals into commerce outcomes while delivering more relevant experiences for shoppers. We use proprietary commerce intelligence and AI decisioning to drive relevance for shoppers and performance for businesses. At Criteo, our culture is as unique as it is diverse. From our offices across the globe or from the comfort of home, our 3,600 Criteos collaborate together to build an open, impactful, and forward-thinking environment. We foster a workplace where everyone is valued, and employment decisions are based solely on skills, qualifications, and business needs—never on non-job-related factors or legally protected characteristics. What We Offer: 🏢 Ways of working – Our hybrid model blends home with in-office experiences, making space for both. 📈 Grow with us – Learning, mentorship & career development programs. 💪 Your wellbeing matters – Health benefits, wellness perks & mental health support. 🤝 A team that cares – Diverse, inclusive, and globally connected. 💸 Fair pay & perks – Attractive salary, with performance-based rewards and family-friendly policies, plus the potential for equity depending on role and level. Additional benefits may vary depending on the country where you work and the nature of your employment with Criteo.",
+      "score": 35.0,
+      "decision": "LOW_INTEREST",
+      "reason": "La oferta es un puesto de Project Management enfocado puramente en Finanzas, AdTech y modelos comerciales (Order-to-Cash, ingresos, impuestos), lo cual está completamente alejado del perfil industrial, IT/OT y de automatización de infraestructuras críticas del candidato.",
+      "spanish_summary": "",
+      "strengths": [
+        "Experiencia sólida en gestión de proyectos y programas complejos.",
+        "Habilidades de liderazgo y gestión transversal de stakeholders."
+      ],
+      "gaps": [
+        "Dominio sectorial completamente diferente (AdTech y Finanzas vs Automatización Industrial e Infraestructuras Críticas).",
+        "Ausencia total de contexto técnico industrial (PLC, SCADA, OT, sistemas de control).",
+        "Enfoque de la gestión de proyectos orientado a finanzas, facturación, impuestos y modelos de negocio en lugar de ingeniería."
+      ],
+      "barriers": [
+        "El rol es claramente ajeno al dominio profesional del candidato, centrado en finanzas y monetización de productos digitales sin componente de ingeniería o técnica industrial."
+      ],
+      "dimensions": {
+        "Gestión de proyectos": 40.0,
+        "Entorno técnico": 10.0,
+        "Liderazgo": 50.0,
+        "Sector": 20.0,
+        "Seniority": 50.0
       }
     },
     {
