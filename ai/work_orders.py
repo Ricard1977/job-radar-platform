@@ -1,12 +1,16 @@
 """Persistent Work Order queue helpers for Job Radar."""
 import uuid
 from datetime import datetime, timezone, timedelta
-from db.database import DB_PATH, connect
+from db.database import DB_PATH, connect, initialize
 
 def now():
     return datetime.now(timezone.utc).isoformat()
 
+def ensure_schema():
+    initialize(DB_PATH)
+
 def create_evaluation_order(model_version, limit=None, priority=100):
+    ensure_schema()
     ts=now(); public_id=f"WO-{datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S')}-{uuid.uuid4().hex[:6].upper()}"
     with connect(DB_PATH) as conn:
         sql="""SELECT j.id FROM jobs j
@@ -29,8 +33,17 @@ def create_evaluation_order(model_version, limit=None, priority=100):
                             VALUES(?,?,'PENDING',?,?,?)""",[(order_id,r['id'],priority,ts,ts) for r in jobs])
     return public_id
 
+def recover_stale_processing(model_version, stale_minutes=20):
+    ensure_schema()
+    ts=now(); cutoff=(datetime.now(timezone.utc)-timedelta(minutes=stale_minutes)).isoformat()
+    with connect(DB_PATH) as conn:
+        cur=conn.execute("""UPDATE work_order_items SET status='PENDING',updated_at=?,last_error='Recovered after interrupted worker'
+                            WHERE status='PROCESSING' AND updated_at<? AND work_order_id IN
+                            (SELECT id FROM work_orders WHERE work_type='AI_EVALUATION' AND model_version=?)""",(ts,cutoff,model_version))
+        return cur.rowcount
+
 def claim_next(model_version):
-    ts=now()
+    ensure_schema(); ts=now()
     with connect(DB_PATH) as conn:
         conn.execute("BEGIN IMMEDIATE")
         row=conn.execute("""SELECT wi.id,wi.work_order_id,wi.job_id,wi.attempts
@@ -47,7 +60,7 @@ def claim_next(model_version):
 def mark_completed(item_id):
     ts=now()
     with connect(DB_PATH) as conn:
-        conn.execute("UPDATE work_order_items SET status='COMPLETED',finished_at=?,updated_at=?,last_error=NULL,last_http_status=NULL WHERE id=?",(ts,ts,item_id))
+        conn.execute("UPDATE work_order_items SET status='COMPLETED',finished_at=?,updated_at=?,last_error=NULL,last_http_status=NULL,next_attempt_at=NULL WHERE id=?",(ts,ts,item_id))
         refresh_order(conn,item_id,ts)
 
 def mark_retry(item_id,error,http_status=None,delay_seconds=300):
@@ -70,14 +83,14 @@ def refresh_order(conn,item_id,ts=None):
     counts={r['status']:r['n'] for r in conn.execute("SELECT status,COUNT(*) n FROM work_order_items WHERE work_order_id=? GROUP BY status",(oid,))}
     completed=counts.get('COMPLETED',0); retry=counts.get('RETRY_WAIT',0); failed=counts.get('FAILED',0)
     active=sum(counts.get(s,0) for s in ('PENDING','PROCESSING','RETRY_WAIT'))
-    status='PROCESSING'
-    finished=None
+    status='PROCESSING'; finished=None
     if active==0:
         status='COMPLETED_WITH_ERRORS' if failed else 'COMPLETED'; finished=ts
     conn.execute("""UPDATE work_orders SET status=?,completed_items=?,retry_items=?,failed_items=?,finished_at=?,updated_at=? WHERE id=?""",
                  (status,completed,retry,failed,finished,ts,oid))
 
 def progress(public_id):
+    ensure_schema()
     with connect(DB_PATH) as conn:
         row=conn.execute("""SELECT *,CASE WHEN total_items=0 THEN 100.0 ELSE ROUND(completed_items*100.0/total_items,1) END progress_pct
                             FROM work_orders WHERE public_id=?""",(public_id,)).fetchone()
