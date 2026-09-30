@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T03:59:23.214326+00:00",
+  "generated_at": "2026-09-30T04:14:10.818111+00:00",
   "jobs": [
     {
       "id": "JR-000622",
@@ -1128,6 +1128,41 @@
       "dimensions": {
         "Gestión de proyectos": 15.0,
         "Entorno técnico": 12.0,
+        "Liderazgo": 12.0,
+        "Sector": 8.0,
+        "Seniority": 18.0
+      }
+    },
+    {
+      "id": "JR-000104",
+      "title": "Soporte Central de Recambios.",
+      "company": "Linde Material Handling Iberica, SA",
+      "logo_url": "https://media.licdn.com/dms/image/v2/C4D0BAQFnGqsd4rnjWA/company-logo_100_100/company-logo_100_100/0/1630531695725/linde_material_handling_iberica_sa_logo?e=2147483647&v=beta&t=L-REKwc0YZRp9AXies9Wo9XvVtK-_PyZa9yZBvPF5tA",
+      "location": "Pallejà, Catalonia, Spain",
+      "workplace_type": null,
+      "salary": null,
+      "first_seen_at": "2026-09-25T13:41:51.053537+00:00",
+      "source": "LinkedIn",
+      "url": "https://es.linkedin.com/jobs/view/soporte-central-de-recambios-at-linde-material-handling-iberica-sa-4470090687?position=8&pageNum=7&refId=ZYLnt03ib2MZ1xyarAXe0A%3D%3D&trackingId=gkLdpqMAC9%2BCi64HvTQCgg%3D%3D",
+      "description": "En Linde Material Handling Ibérica buscamos profesionales con visión estratégica, orientación al cliente y pasión por la mejora continua para unirse a nuestro equipo como Soporte Central de Recambios . Si te motiva trabajar en un entorno internacional, liderar iniciativas de negocio basadas en datos y colaborar con diferentes áreas para impulsar el crecimiento y la rentabilidad, esta puede ser tu próxima oportunidad. 🎯 ¿Cuál será tu misión? Trabajarás estrechamente con la Dirección de Service para definir e implementar estrategias de negocio orientadas al área de recambios, gestionando la rentabilidad de la actividad, identificando ineficiencias y desarrollando proyectos que impulsen el crecimiento del negocio. 🔧 ¿Qué harás en tu día a día? Participarás en la definición y gestión de estrategias de pricing para maximizar la rentabilidad, negociarás acuerdos marco con proveedores y coordinarás el soporte centralizado con Alemania en materia de precios y business support. Además, colaborarás con los equipos locales e internacionales de recambios realizando el seguimiento de la actividad, los acuerdos de servicio y el soporte a delegaciones y distribuidores. Tendrás un papel clave en el análisis y explotación de datos, transformándolos en iniciativas y proyectos estratégicos que contribuyan al crecimiento del negocio. También participarás en el desarrollo de campañas de marketing, estrategias de marca, lanzamiento de nuevos productos y servicios, mejora de procesos y elaboración de informes que faciliten la toma de decisiones. 🎓 ¿Qué buscamos? Buscamos profesionales con formación en Ingeniería, Project Management o similar, con experiencia en desarrollo de negocio, gestión de proyectos y análisis de datos. Valoraremos especialmente conocimientos en: ✔ Gestión de recambios y estrategias comerciales. ✔ Entornos internacionales y soporte centralizado. ✔ SAP y Salesforce. ✔ Marketing y desarrollo de negocio. ✔ Sector de manutención y carretillas elevadoras. ✔ Inglés medio hablado y escrito. ⭐ ¿Qué ofrecemos? ✅ Incorporación estable en una compañía líder en el sector. ✅ Retribución competitiva según experiencia y conocimientos. ✅ Seguro médico privado. ✅ Plan de retribución flexible. ✅ Desarrollo profesional en un entorno internacional. ✅ Participación en proyectos estratégicos con impacto real en el negocio. ✅ Un equipo comprometido que trabaja bajo los valores de Integrity, Collaboration, Courage & Excellence . Si buscas un nuevo reto profesional y quieres formar parte de una empresa referente en soluciones intralogísticas, ¡queremos conocerte!",
+      "score": 68.0,
+      "decision": "INTERESTING",
+      "reason": "La oferta pide un perfil con formación en ingeniería, gestión de proyectos y desarrollo de negocio, lo cual encaja con la experiencia senior del candidato, aunque el enfoque específico en recambios, pricing y SAP/Salesforce difiere de su núcleo industrial de automatización y TI/OT.",
+      "spanish_summary": "",
+      "strengths": [
+        "Formación requerida en ingeniería o project management",
+        "Experiencia en gestión de proyectos y desarrollo de negocio",
+        "Entorno internacional y colaboración con equipos multidisciplinares"
+      ],
+      "gaps": [
+        "Enfoque fuerte en gestión de recambios, pricing y estrategias comerciales",
+        "Falta de mención explícita a sistemas SAP o Salesforce en el perfil",
+        "El sector de manutención y carretillas elevadoras es diferente al núcleo principal de automatización crítica del candidato"
+      ],
+      "barriers": [],
+      "dimensions": {
+        "Gestión de proyectos": 15.0,
+        "Entorno técnico": 10.0,
         "Liderazgo": 12.0,
         "Sector": 8.0,
         "Seniority": 18.0
@@ -6441,6 +6476,39 @@
       }
     },
     {
+      "id": "JR-000105",
+      "title": "Cloud Product Owner - Wind Energy Assessment",
+      "company": "DNV",
+      "logo_url": "https://media.licdn.com/dms/image/v2/C4D0BAQFTwZwPOZp-Dg/company-logo_100_100/company-logo_100_100/0/1630521750380/dnvgl_logo?e=2147483647&v=beta&t=TeM-ISMj8KlAGnexwqqH8YHCX7M2b-opqg1ff-trDvk",
+      "location": "Barcelona, Catalonia, Spain",
+      "workplace_type": null,
+      "salary": "5-8",
+      "first_seen_at": "2026-09-25T13:41:52.300954+00:00",
+      "source": "LinkedIn",
+      "url": "https://es.linkedin.com/jobs/view/cloud-product-owner-wind-energy-assessment-at-dnv-4459509576?position=9&pageNum=7&refId=ZYLnt03ib2MZ1xyarAXe0A%3D%3D&trackingId=hfhOHBelnVXQcDJiU2dtIA%3D%3D",
+      "description": "About Us We are the independent expert in assurance and risk management. Driven by our purpose, to safeguard life, property, and the environment, we empower our customers and their stakeholders with facts and reliable insights so that critical decisions can be made with confidence. As a trusted voice for many of the world’s most successful organizations, we use our knowledge to advance safety and performance, set industry benchmarks, and inspire and invent solutions to tackle global transformations. About Energy Systems We help customers navigate the complex transition to a decarbonized and more sustainable energy future. We do this by assuring that energy systems work safely and effectively, using solutions that are increasingly digital. We also help industries and governments to navigate the many complex, interrelated transitions taking place globally and regionally, in the energy industry. About The Role The Cloud Product Owner is responsible for supporting the successful delivery and evolution of cloud-based software solutions. The role acts as the technical and domain bridge between customers, product teams, and software development teams, translating complex business and analytical requirements into scalable product capabilities. The ideal candidate combines strong renewable wind energy domain expertise, product ownership experience, and a data/AI-driven mindset, helping shape and deliver advanced analytics solutions that integrate into the platform ecosystem. Key Responsibilities Product Ownership & Delivery Manage the product backlog, ensuring alignment with business goals, timelines and budget Translate business, customer, and domain requirements into clear user stories and actionable development requirements Work closely with engineering teams to clarify scope, refine implementation approaches, and unblock delivery Drive sprint readiness, backlog refinement, acceptance criteria definition, and feature validation Ensure delivered solutions are scalable, maintainable, and aligned with the platform architecture. Domain & Solution Leadership Act as the bridge between renewable energy domain and software development Translate renewable asset performance, forecasting workflows, and wind farm development processes into product capabilities Support design of advanced analytics features, including AI/ML-driven use cases and intelligent automation Help define how domain-specific analytical logic is embedded into product workflows. Cross-Functional Collaboration Partner closely with the customer Product Manager on priorities, roadmap execution, and feature definition Collaborate with developers, architects, UX, QA, and Delivery Manager to ensure successful planning and execution Engage with internal and external stakeholders to validate requirements and gather feedback Support release planning, feature acceptance, and continuous improvement. What we offer At Data & Digital Solutions, DNV Energy Systems we combine knowledge, expertise and innovative data-driven digital solutions as our response to enable our customers to tackle the energy transition. Our purpose is to provide data-driven digital solutions to maximize the performance of renewable energy assets, optimize efficiency in the management of renewable energy portfolios and contribute to have the greenest energy mix in the grid. With more than 20 years’ experience, we have consolidated our position as the independent leaders in management, monitoring, control and analysis of renewable energy plants. What We Offer Competitive salary Medical scheme Commuting allowance Life insurance Pension plan Kindergarten allowance Flexible schedule. Please submit your CV in English. DNV is an Equal Opportunity Employer and gives consideration for employment to qualified applicants without regard to gender, religion, race, national or ethnic origin, cultural background, social group, disability, sexual orientation, gender identity, marital status, age or political opinion. Diversity is fundamental to our culture and we invite you to be part of this diversity. About You To be successful in this role, you need to have: Degree in Engineering, Meteorology, Mathematics, Computer Science, Energy Systems, or related field, 5-8+ years of experience in the renewable energy sector, preferably with deep expertise in wind energy, Strong understanding of wind asset operations and analytics, Experience collaborating with software developers or technical teams, Ability to translate renewable energy domain knowledge into software requirements, Strong analytical mindset with interest in AI/ML-driven product capabilities, Strong stakeholder communication and requirement management skills, Excellent English communication skills. The ideal candidate can translate technical requirements into practical solutions and guide design and implementation. They communicate effectively with stakeholders and collaborate across teams. Strong analytical and problem-solving skills, attention to detail, and the ability to leverage data for decisions are essential. The candidate should demonstrate solid project management capabilities, proficiency in product tools and methodologies, and a customer-focused approach to improving user experience. Preferably, you bring knowledge of pre-construction wind energy yield assessments and is familiar with SaaS or cloud-based platforms. Experience in product ownership, product management, or software solution delivery is highly valued, particularly when working closely with Agile development teams. A background in renewable energy software, along with exposure to AI/ML-driven analytics or intelligent automation, is advantageous. Experience operating in cross-functional delivery environments is important, supported by an Agile certification. Additionally, proficiency in Spanish would be considered a strong asset. Security and compliance with statutory requirements in the countries in which we operate is essential for DNV. Background checks will be conducted on all final candidates as part of the offer process, in accordance with applicable country-specific laws and practices.",
+      "score": 45.0,
+      "decision": "LOW_INTEREST",
+      "reason": "Aunque el candidato aporta una amplia experiencia en gestión de proyectos de ingeniería y automatización, este rol de Product Owner está muy enfocado en desarrollo de software cloud y análisis de energía eólica (renovables), un dominio técnico específico que difiere del perfil industrial y de infraestructuras críticas del candidato.",
+      "spanish_summary": "",
+      "strengths": [
+        "Formación y base en ingeniería con sólida experiencia en gestión de proyectos complejos.",
+        "Habilidades demostradas de liderazgo y gestión de stakeholders."
+      ],
+      "gaps": [
+        "El rol requiere experiencia específica en el sector de energía eólica y evaluación de recursos eólicos.",
+        "Enfoque principal en producto de software cloud, SaaS y metodologías Agile orientadas a desarrollo digital, lo cual se aleja del entorno OT/IoT tradicional del candidato (PLC, SCADA, DCS)."
+      ],
+      "barriers": [],
+      "dimensions": {
+        "Gestión de proyectos": 10.0,
+        "Entorno técnico": 5.0,
+        "Liderazgo": 10.0,
+        "Sector": 5.0,
+        "Seniority": 15.0
+      }
+    },
+    {
       "id": "JR-000715",
       "title": "Pools Engineer",
       "company": "Hennessey LLC",
@@ -9930,6 +9998,41 @@
         "Gestión de proyectos": 5.0,
         "Entorno técnico": 5.0,
         "Liderazgo": 5.0,
+        "Sector": 5.0,
+        "Seniority": 10.0
+      }
+    },
+    {
+      "id": "JR-000106",
+      "title": "IA solutions",
+      "company": "Merlin Software",
+      "logo_url": "https://media.licdn.com/dms/image/v2/D4D0BAQEpnzL_QAPqlQ/company-logo_100_100/B4DZe_l0BgHkAY-/0/1751266050932/merlinsoftware_logo?e=2147483647&v=beta&t=beNByFbBg-c1uLwd_r3TescA0VgqfIPkJtiwVQHOxRE",
+      "location": "Tordera, Catalonia, Spain",
+      "workplace_type": null,
+      "salary": "00a 18",
+      "first_seen_at": "2026-09-25T13:41:53.480879+00:00",
+      "source": "LinkedIn",
+      "url": "https://es.linkedin.com/jobs/view/ia-solutions-at-merlin-software-4471871403?position=10&pageNum=7&refId=ZYLnt03ib2MZ1xyarAXe0A%3D%3D&trackingId=kpdfSRoeZo49mPa2qCsb6g%3D%3D",
+      "description": "¿Eres de esos/as que, ante un proceso manual o repetitivo, piensa primero “¿cómo podría resolver esto con IA?” ? Buscamos incorporar un/a AI Solutions para ayudar a transformar la forma de trabajar de nuestros equipos, identificando oportunidades de mejora y convirtiéndolas en soluciones reales apoyadas en Inteligencia Artificial. No buscamos un perfil centrado únicamente en conocer herramientas de IA. Buscamos a alguien que las utilice de verdad en su día a día , que disfrute entendiendo problemas de negocio y que sea capaz de llevar una idea desde la necesidad inicial hasta su implantación. Esta mentalidad “IA-first” es uno de los elementos clave del perfil. ¿Cómo será tu día a día? Trabajarás muy cerca del equipo de Operaciones para detectar procesos con potencial de mejora y desarrollar soluciones que permitan reducir tareas manuales, simplificar operativas y ganar eficiencia mediante IA . Tu día a día seguirá una dinámica muy clara: entender la necesidad del negocio → diseñar y desarrollar una solución con IA → acompañar al equipo durante su implantación y adopción . ¿Cuáles serán tus funciones? Trabajar directamente con los equipos de para entender sus necesidades. Identificar procesos manuales o repetitivos que puedan optimizarse mediante IA. Diseñar y desarrollar soluciones y aplicaciones apoyadas en Inteligencia Artificial. Probar nuevas formas de resolver problemas utilizando un enfoque AI-first . Acompañar a los usuarios de negocio durante la implantación de las soluciones. Convertirte en un punto de conexión entre IA, tecnología y Operaciones . ¿Qué buscamos? Buscamos un perfil con un año de experiencia profesional previa. Idealmente que haya estudiado el Grado en ingeniería informática. Nos gustaría conocerte si: Utilizas herramientas de IA de forma habitual para resolver problemas reales. Puedes explicarnos y enseñarnos cómo estás aplicando IA actualmente en tu trabajo . Tienes capacidad para desarrollar soluciones a partir de una necesidad de negocio. Te gusta experimentar, probar herramientas y buscar maneras más eficientes de trabajar. Sabes comunicarte con perfiles técnicos y no técnicos. Te sientes cómodo/a trabajando directamente con usuarios de negocio. Tienes una mentalidad práctica, autónoma y orientada a resultados. Modalidad: ¿Qué te ofrecemos? Conciliación y bienestar: Además de las vacaciones anuales, disfrutarás del día de tu cumpleaños libre, así como de los días 24 y 31 de diciembre. Horario (L-J) de 09:00a 18:30 y los viernes de 09:00 - 15:00. Fomentamos la formación continua y el aprendizaje en proyectos reales. Perseguimos el plan de carrera y de formación de manera individual para cada persona. Nos adaptamos a tus objetivos. Rango salarial entre 20.000K y 24.000K brutos",
+      "score": 35.0,
+      "decision": "LOW_INTEREST",
+      "reason": "La oferta es para un perfil junior de desarrollo e implantación de soluciones de IA con un año de experiencia y un rango salarial bajo, lo cual está completamente desalineado con la trayectoria senior de más de 20 años en gestión de proyectos de ingeniería y automatización industrial del candidato.",
+      "spanish_summary": "",
+      "strengths": [
+        "Ubicación cercana a Barcelona (Tordera, Cataluña)"
+      ],
+      "gaps": [
+        "El puesto requiere desarrollo práctico y técnico de soluciones de IA, alejándose de la gestión de proyectos de ingeniería y automatización.",
+        "Rango salarial y nivel de experiencia (1 año) propios de un perfil junior, muy por debajo de la senioridad del candidato."
+      ],
+      "barriers": [
+        "Explicitly junior or entry-level position with no meaningful senior responsibility.",
+        "Role is clearly outside the candidate's professional domain and has no credible transferable management, engineering or technical-services component."
+      ],
+      "dimensions": {
+        "Gestión de proyectos": 10.0,
+        "Entorno técnico": 5.0,
+        "Liderazgo": 10.0,
         "Sector": 5.0,
         "Seniority": 10.0
       }
